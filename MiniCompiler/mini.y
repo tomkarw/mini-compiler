@@ -34,11 +34,12 @@ declarations        :
                     }
                     ;
                     
-declaration         : type id SEMICOLON
+declaration         : type ids id SEMICOLON
                     {
                         $$ = new DeclarationNode(
                             $1 as BaseTypeNode,
-                            $2 as IdNode
+                            $2 as BaseIdsNode,
+                            $3 as IdNode
                         );
                     }
                     ;
@@ -48,6 +49,19 @@ type                : INT
                         $$ = new IntTypeNode($1);
                     }
                     ;
+                    
+ids		    :
+		    {
+			$$ = new EmptyIdsNode(-1, -1, "");
+		    }
+		    | ids id COMMA
+		    {
+		    	$$ = new IdsNode(
+		    		$1 as BaseIdsNode,
+		    		$2 as IdNode
+		    	);
+		    }
+		    ;
 
 id		    : ID
 		    {

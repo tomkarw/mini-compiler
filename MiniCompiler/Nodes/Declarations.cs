@@ -44,15 +44,18 @@ namespace MiniCompiler
     public class DeclarationNode : SyntaxNode
     {
         public BaseTypeNode BaseTypeNode { get; set; }
+        public BaseIdsNode BaseIdsNode { get; set; }
         public IdNode IdNode { get; set; }
 
         public DeclarationNode(
             BaseTypeNode baseTypeNode,
+            BaseIdsNode baseIdsNode,
             IdNode idNode
         ) : base(-1, -1, "")
         {
             BaseTypeNode = baseTypeNode;
-            IdNode = IdNode;
+            BaseIdsNode = baseIdsNode;
+            IdNode = idNode;
         }
 
 
@@ -62,7 +65,46 @@ namespace MiniCompiler
         }
     }
 
-    public class IdNode : SyntaxNode
+    public abstract class BaseIdsNode : SyntaxNode
+    {
+        public BaseIdsNode(int line, int column, string text) : base(line, column, text)
+        {
+        }
+    }
+
+    public class EmptyIdsNode : BaseDeclarationsNode
+    {
+        public EmptyIdsNode(int line, int column, string text) : base(line, column, text)
+        {
+        }
+
+        public override string GenCode(ref StringBuilder sb)
+        {
+            return null;
+        }
+    }
+
+    public class IdsNode : BaseIdsNode
+    {
+        public BaseIdsNode BaseIdsNode { get; set; }
+        public IdNode IdNode { get; set; }
+
+        public IdsNode(
+            BaseIdsNode baseIdsNode,
+            IdNode idNode
+        ) : base(idNode.Line, idNode.Column, idNode.Text)
+        {
+            BaseIdsNode = baseIdsNode;
+            IdNode = idNode;
+        }
+
+        public override string GenCode(ref StringBuilder sb)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    public class IdNode : BaseIdsNode
     {
         public IdNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
         {
