@@ -10,7 +10,8 @@ namespace MiniCompiler
         {
             var source = new FileStream(args[0], FileMode.Open);
             var scanner = new Scanner(source);
-            var parser = new Parser(scanner);
+            var program = new ProgramNode();
+            var parser = new Parser(scanner, program);
             var success = parser.Parse();
             source.Close();
             Console.WriteLine(success);

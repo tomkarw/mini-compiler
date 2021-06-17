@@ -38,7 +38,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Nodes.cs" />
+        <Compile Include="Nodes\Declarations.cs" />
+        <Compile Include="Nodes\Nodes.cs" />
         <Compile Include="Parser.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,6 +48,8 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include=".gitignore" />
+      <Content Include="Examples\empty_program.mini" />
+      <Content Include="Examples\only_declarations.mini" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />
     </ItemGroup>
