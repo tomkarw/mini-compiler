@@ -1,4 +1,3 @@
 program {
-   xxx 
-   xxx
+   int a;
 }
