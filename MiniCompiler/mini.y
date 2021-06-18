@@ -44,30 +44,43 @@ declaration         : type ids id SEMICOLON
                     }
                     ;
                     
-type                : INT
-                    {
-                        $$ = new IntTypeNode($1);
-                    }
-                    ;
+type		: INT
+		{
+			$$ = new IntTypeNode($1);
+		}
+		| DOUBLE
+		{
+			$$ = new DoubleTypeNode($1);
+		}
+		| BOOL
+		{
+			$$ = new BoolTypeNode($1);
+		}
+		| HEX
+		{
+			/* TODO: good choice? */
+			$$ = new IntTypeNode($1);
+		}
+		;
                     
-ids		    : ids id COMMA
-		    {
-		    	$$ = new IdsNode(
-		    		$1 as IdsOrEmptyNode,
-		    		$2 as IdNode
-		    	);
-		    }
-		    | 
-		    {
+ids		: 		 
+		{
 			$$ = new EmptyIdsNode(-1, -1, "");
-		    }
-		    ;
+		}
+                | ids id COMMA
+		{
+			$$ = new IdsNode(
+				$1 as IdsOrEmptyNode,
+				$2 as IdNode
+		    	);
+		}
+		;
 
-id		    : ID
-		    {
+id		: ID
+		{
 			$$ = new IdNode($1);
-		    }
-		    ;
+		}
+		;
 
 %%
 

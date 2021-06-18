@@ -22,4 +22,32 @@ namespace MiniCompiler
             return null;
         }
     }
+    
+    public class DoubleTypeNode : BaseTypeNode
+    {
+        public override string Type => "double";
+        
+        public DoubleTypeNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
+        {
+        }
+
+        public override string GenCode(ref StringBuilder sb)
+        {
+            return null;
+        }
+    }
+
+    public class BoolTypeNode : BaseTypeNode
+    {
+        public override string Type => "i1";
+        
+        public BoolTypeNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
+        {
+        }
+
+        public override string GenCode(ref StringBuilder sb)
+        {
+            return null;
+        }
+    }
 }

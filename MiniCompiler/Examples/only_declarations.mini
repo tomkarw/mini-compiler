@@ -1,4 +1,7 @@
 program {
    int i;
+   double d;
+   bool b;
+   hex h;
    int a, b, c;
 }

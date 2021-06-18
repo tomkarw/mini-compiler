@@ -63,12 +63,15 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: add variable to context
+            // TODO: bug in productions, needs fixing!!!
+            if (IdsOrEmptyNode != null) {
+                IdsOrEmptyNode.Type = BaseTypeNode.Type;
+                IdsOrEmptyNode.GenCode(ref sb);
+            }
             
-            // declare variable in llvm
-            var id = Context.GetNewId();
-            var type = BaseTypeNode.Type;
-            sb.AppendLine($"%{id} = alloca {type}");
+            IdNode.Type = BaseTypeNode.Type;
+            IdNode.GenCode(ref sb);
+
             return null;
         }
     }
@@ -108,7 +111,16 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            // TODO: bug in productions, needs fixing!!!
+            if (IdsOrEmptyNode != null) 
+            {
+                IdsOrEmptyNode.Type = Type;
+                IdsOrEmptyNode.GenCode(ref sb);
+            }
+            
+            IdNode.Type = Type;
+            IdNode.GenCode(ref sb);
+            return null;
         }
     }
 
@@ -120,7 +132,11 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            // TODO: check if variable exists in context
+            
+            var id = Context.GetNewId();
+            sb.AppendLine($"%{id} = alloca {Type}");
+            return null;
         }
     }
 }
