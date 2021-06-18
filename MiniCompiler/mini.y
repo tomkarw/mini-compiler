@@ -13,36 +13,37 @@
 
 %%
 
-start		    : PROGRAM SCURLY declarations ECURLY EOF
-		    {
+start		: PROGRAM SCURLY declarations instructions ECURLY EOF
+		{
 			program = new ProgramNode(
-			    $3 as DeclarationsNode
+				$3 as DeclarationsNode,
+				$4 as InstructionsNode
 			);
-		    }  
-		    ;
+		}  
+		;
                     
-declarations        :
-                    {
-                        $$ = new EmptyDeclarationsNode(-1, -1, "");
-                    }
-                    | declarations declaration
-                    {
-                        $$ = new DeclarationsNode(
-                            $1 as DeclarationsOrEmptyNode,
-                            $2 as DeclarationNode
-                        );
-                    }
-                    ;
+declarations	:
+		{
+			$$ = new EmptyDeclarationsNode(-1, -1, null);
+		}
+		| declarations declaration
+		{
+			$$ = new DeclarationsNode(
+				$1 as DeclarationsOrEmptyNode,
+				$2 as DeclarationNode
+			);
+		}
+		;
                     
-declaration         : type ids id SEMICOLON
-                    {
-                        $$ = new DeclarationNode(
-                            $1 as BaseTypeNode,
-                            $2 as IdsOrEmptyNode,
-                            $3 as IdNode
-                        );
-                    }
-                    ;
+declaration	: type ids id SEMICOLON
+		{
+			$$ = new DeclarationNode(
+				$1 as BaseTypeNode,
+				$2 as IdsOrEmptyNode,
+				$3 as IdNode
+			);
+		}
+		;
                     
 type		: INT
 		{
@@ -65,7 +66,7 @@ type		: INT
                     
 ids		: 		 
 		{
-			$$ = new EmptyIdsNode(-1, -1, "");
+			$$ = new EmptyIdsNode(-1, -1, null);
 		}
                 | ids id COMMA
 		{
@@ -79,6 +80,26 @@ ids		:
 id		: ID
 		{
 			$$ = new IdNode($1);
+		}
+		;
+
+instructions	:
+		{
+			$$ = new EmptyInstructionsNode(-1, -1, null);
+		}
+		| instructions instruction
+		{
+			$$ = new InstructionsNode(
+				$1 as InstructionsOrEmptyNode,
+				$2 as InstructionNode
+			);
+		}
+		;
+                    
+instruction	: ASSIGNMENT
+		{
+			$$ = new InstructionNode(
+			);
 		}
 		;
 

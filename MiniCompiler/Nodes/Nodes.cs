@@ -33,53 +33,39 @@ namespace MiniCompiler
     {
 
         public DeclarationsNode Declarations { get; set; }
-        // public InstructionsNode Instructions { get; set; }
+        public InstructionsNode Instructions { get; set; }
 
-        public ProgramNode() : base(-1, -1, "")
+        public ProgramNode() : base(-1, -1, null)
         {
 
         }
 
         public ProgramNode(
-            DeclarationsNode declarations
-            // InstructionsNode instructions
-        ) : base(declarations.Line, declarations.Column, declarations.Text)
+            DeclarationsNode declarations,
+            InstructionsNode instructions
+        ) : base(-1, -1, null)
         {
             Declarations = declarations;
-            // Instructions = instructions;
+            Instructions = instructions;
         }
 
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: prolog
+            // prolog
             sb.AppendLine("declare i32 @printf(i8*, ...)");
             sb.AppendLine("declare i32 @scanf(i8*, ...)");
             sb.AppendLine("define i32 @main ()");
             sb.AppendLine("{");
 
-            Declarations.GenCode(ref sb);
-            // Instructions.GenCode(ref sb);
+            // TODO: same production error
+            Declarations?.GenCode(ref sb);
+            Instructions?.GenCode(ref sb);
 
-            // TODO: epilog
+            // epilog
             sb.AppendLine("ret i32 0");
             sb.AppendLine("}");
             return null;
-        }
-    }
-
-    public class InstructionsNode : SyntaxNode
-    {
-        public InstructionsNode(
-            // InstructionsNode instructions,
-            // InstructionNode instruction
-        ) : base(-1, -1, "")
-        {
-        }
-
-        public override string GenCode(ref StringBuilder sb)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

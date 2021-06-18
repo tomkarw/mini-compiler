@@ -40,6 +40,7 @@
     <ItemGroup>
         <Compile Include="Nodes\Context.cs" />
         <Compile Include="Nodes\Declarations.cs" />
+        <Compile Include="Nodes\Instructions.cs" />
         <Compile Include="Nodes\Nodes.cs" />
         <Compile Include="Nodes\Types.cs" />
         <Compile Include="Parser.cs" />
@@ -55,6 +56,8 @@
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\only_declarations.ll" />
       <Content Include="Examples\only_declarations.mini" />
+      <Content Include="Examples\only_instructions.ll" />
+      <Content Include="Examples\only_instructions.mini" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />
     </ItemGroup>

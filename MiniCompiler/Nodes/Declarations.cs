@@ -53,7 +53,7 @@ namespace MiniCompiler
             BaseTypeNode baseTypeNode,
             IdsOrEmptyNode idsOrEmptyNode,
             IdNode idNode
-        ) : base(-1, -1, "")
+        ) : base(-1, -1, null)
         {
             BaseTypeNode = baseTypeNode;
             IdsOrEmptyNode = idsOrEmptyNode;
