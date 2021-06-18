@@ -29,11 +29,23 @@ namespace MiniCompiler
         // public abstract char CheckType();
     }
 
+    public class EmptyNode : SyntaxNode
+    {
+        public EmptyNode(int line, int column, string text) : base(line, column, text)
+        {
+        }
+
+        public override string GenCode(ref StringBuilder sb)
+        {
+            return null;
+        }
+    }
+
     public class ProgramNode : SyntaxNode
     {
 
-        public DeclarationsNode Declarations { get; set; }
-        public InstructionsNode Instructions { get; set; }
+        public SyntaxNode Declarations { get; set; }
+        public SyntaxNode Instructions { get; set; }
 
         public ProgramNode() : base(-1, -1, null)
         {
@@ -41,8 +53,8 @@ namespace MiniCompiler
         }
 
         public ProgramNode(
-            DeclarationsNode declarations,
-            InstructionsNode instructions
+            SyntaxNode declarations,
+            SyntaxNode instructions
         ) : base(-1, -1, null)
         {
             Declarations = declarations;
@@ -58,9 +70,8 @@ namespace MiniCompiler
             sb.AppendLine("define i32 @main ()");
             sb.AppendLine("{");
 
-            // TODO: same production error
-            Declarations?.GenCode(ref sb);
-            Instructions?.GenCode(ref sb);
+            Declarations.GenCode(ref sb);
+            Instructions.GenCode(ref sb);
 
             // epilog
             sb.AppendLine("ret i32 0");

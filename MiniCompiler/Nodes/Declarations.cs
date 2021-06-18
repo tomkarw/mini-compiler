@@ -2,33 +2,14 @@
 
 namespace MiniCompiler
 {
-    public abstract class DeclarationsOrEmptyNode : SyntaxNode
+    public class DeclarationsNode : SyntaxNode
     {
-        public DeclarationsOrEmptyNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-    }
-
-    public class EmptyDeclarationsNode : DeclarationsOrEmptyNode
-    {
-        public EmptyDeclarationsNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-
-        public override string GenCode(ref StringBuilder sb)
-        {
-            return null;
-        }
-    }
-
-    public class DeclarationsNode : DeclarationsOrEmptyNode
-    {
-        public DeclarationsOrEmptyNode Declarations { get; set; }
-        public DeclarationNode Declaration { get; set; }
+        public SyntaxNode Declarations { get; set; }
+        public SyntaxNode Declaration { get; set; }
 
         public DeclarationsNode(
-            DeclarationsOrEmptyNode declarations,
-            DeclarationNode declaration
+            SyntaxNode declarations,
+            SyntaxNode declaration
         ) : base(declarations.Line, declarations.Column, declarations.Text)
         {
             Declarations = declarations;
@@ -45,14 +26,14 @@ namespace MiniCompiler
 
     public class DeclarationNode : SyntaxNode
     {
-        public BaseTypeNode BaseTypeNode { get; set; }
-        public IdsOrEmptyNode IdsOrEmptyNode { get; set; }
-        public IdNode IdNode { get; set; }
+        public SyntaxNode BaseTypeNode { get; set; }
+        public SyntaxNode IdsOrEmptyNode { get; set; }
+        public SyntaxNode IdNode { get; set; }
 
         public DeclarationNode(
-            BaseTypeNode baseTypeNode,
-            IdsOrEmptyNode idsOrEmptyNode,
-            IdNode idNode
+            SyntaxNode baseTypeNode,
+            SyntaxNode idsOrEmptyNode,
+            SyntaxNode idNode
         ) : base(-1, -1, null)
         {
             BaseTypeNode = baseTypeNode;
@@ -63,11 +44,8 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: bug in productions, needs fixing!!!
-            if (IdsOrEmptyNode != null) {
-                IdsOrEmptyNode.Type = BaseTypeNode.Type;
-                IdsOrEmptyNode.GenCode(ref sb);
-            }
+            IdsOrEmptyNode.Type = BaseTypeNode.Type;
+            IdsOrEmptyNode.GenCode(ref sb);
             
             IdNode.Type = BaseTypeNode.Type;
             IdNode.GenCode(ref sb);
@@ -75,34 +53,15 @@ namespace MiniCompiler
             return null;
         }
     }
-
-    public abstract class IdsOrEmptyNode : SyntaxNode
+    
+    public class IdsNode : SyntaxNode
     {
-        public IdsOrEmptyNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-    }
-
-    public class EmptyIdsNode : DeclarationsOrEmptyNode
-    {
-        public EmptyIdsNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-
-        public override string GenCode(ref StringBuilder sb)
-        {
-            return null;
-        }
-    }
-
-    public class IdsNode : IdsOrEmptyNode
-    {
-        public IdsOrEmptyNode IdsOrEmptyNode { get; set; }
-        public IdNode IdNode { get; set; }
+        public SyntaxNode IdsOrEmptyNode { get; set; }
+        public SyntaxNode IdNode { get; set; }
 
         public IdsNode(
-            IdsOrEmptyNode idsOrEmptyNode,
-            IdNode idNode
+            SyntaxNode idsOrEmptyNode,
+            SyntaxNode idNode
         ) : base(idNode.Line, idNode.Column, idNode.Text)
         {
             IdsOrEmptyNode = idsOrEmptyNode;
@@ -124,7 +83,7 @@ namespace MiniCompiler
         }
     }
 
-    public class IdNode : IdsOrEmptyNode
+    public class IdNode : SyntaxNode
     {
         public IdNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
         {

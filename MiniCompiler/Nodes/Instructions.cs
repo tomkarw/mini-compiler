@@ -2,33 +2,14 @@
 
 namespace MiniCompiler
 {
-       public abstract class InstructionsOrEmptyNode : SyntaxNode
+    public class InstructionsNode : SyntaxNode
     {
-        public InstructionsOrEmptyNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-    }
-
-    public class EmptyInstructionsNode : InstructionsOrEmptyNode
-    {
-        public EmptyInstructionsNode(int line, int column, string text) : base(line, column, text)
-        {
-        }
-
-        public override string GenCode(ref StringBuilder sb)
-        {
-            return null;
-        }
-    }
-
-    public class InstructionsNode : InstructionsOrEmptyNode
-    {
-        public InstructionsOrEmptyNode Instructions { get; set; }
-        public InstructionNode Instruction { get; set; }
+        public SyntaxNode Instructions { get; set; }
+        public SyntaxNode Instruction { get; set; }
 
         public InstructionsNode(
-            InstructionsOrEmptyNode declarations,
-            InstructionNode declaration
+            SyntaxNode declarations,
+            SyntaxNode declaration
         ) : base(declarations.Line, declarations.Column, declarations.Text)
         {
             Instructions = declarations;
@@ -43,26 +24,26 @@ namespace MiniCompiler
         }
     }
 
-    public class InstructionNode : SyntaxNode
+    public abstract class InstructionNode : SyntaxNode
     {
-
         public InstructionNode(
         ) : base(-1, -1, null)
         {
         }
+    }
 
+    public class BlockInstructionNode : SyntaxNode
+    {
+        public SyntaxNode Instructions;
+        
+        public BlockInstructionNode(SyntaxNode instructions) : base(instructions.Line, instructions.Column, instructions.Text)
+        {
+            Instructions = instructions;
+        }
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // // TODO: bug in productions, needs fixing!!!
-            // if (IdsOrEmptyNode != null) {
-            //     IdsOrEmptyNode.Type = BaseTypeNode.Type;
-            //     IdsOrEmptyNode.GenCode(ref sb);
-            // }
-            //
-            // IdNode.Type = BaseTypeNode.Type;
-            // IdNode.GenCode(ref sb);
-
+            Instructions.GenCode(ref sb);
             return null;
         }
     }

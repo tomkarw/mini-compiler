@@ -53,6 +53,8 @@
       <Content Include=".gitignore" />
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
+      <Content Include="Examples\assignments.mini" />
+      <Content Include="Examples\empty_program.ll" />
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\only_declarations.ll" />
       <Content Include="Examples\only_declarations.mini" />

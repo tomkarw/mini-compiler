@@ -16,21 +16,21 @@
 start		: PROGRAM SCURLY declarations instructions ECURLY EOF
 		{
 			program = new ProgramNode(
-				$3 as DeclarationsNode,
-				$4 as InstructionsNode
+				$3 as SyntaxNode,
+				$4 as SyntaxNode
 			);
 		}  
 		;
                     
 declarations	:
 		{
-			$$ = new EmptyDeclarationsNode(-1, -1, null);
+			$$ = new EmptyNode(-1, -1, null);
 		}
 		| declarations declaration
 		{
 			$$ = new DeclarationsNode(
-				$1 as DeclarationsOrEmptyNode,
-				$2 as DeclarationNode
+				$1 as SyntaxNode,
+				$2 as SyntaxNode
 			);
 		}
 		;
@@ -38,9 +38,9 @@ declarations	:
 declaration	: type ids id SEMICOLON
 		{
 			$$ = new DeclarationNode(
-				$1 as BaseTypeNode,
-				$2 as IdsOrEmptyNode,
-				$3 as IdNode
+				$1 as SyntaxNode,
+				$2 as SyntaxNode,
+				$3 as SyntaxNode
 			);
 		}
 		;
@@ -66,13 +66,13 @@ type		: INT
                     
 ids		: 		 
 		{
-			$$ = new EmptyIdsNode(-1, -1, null);
+			$$ = new EmptyNode(-1, -1, null);
 		}
                 | ids id COMMA
 		{
 			$$ = new IdsNode(
-				$1 as IdsOrEmptyNode,
-				$2 as IdNode
+				$1 as SyntaxNode,
+				$2 as SyntaxNode
 		    	);
 		}
 		;
@@ -85,22 +85,27 @@ id		: ID
 
 instructions	:
 		{
-			$$ = new EmptyInstructionsNode(-1, -1, null);
+			$$ = new EmptyNode(-1, -1, null);
 		}
 		| instructions instruction
 		{
 			$$ = new InstructionsNode(
-				$1 as InstructionsOrEmptyNode,
-				$2 as InstructionNode
+				$1 as SyntaxNode,
+				$2 as SyntaxNode
 			);
 		}
 		;
                     
-instruction	: ASSIGNMENT
+instruction	: SCURLY instructions ECURLY
 		{
-			$$ = new InstructionNode(
+			$$ = new BlockInstructionNode(
+				$2 as SyntaxNode
 			);
 		}
+		| expression
+		;
+		
+expression	: PLUS
 		;
 
 %%
