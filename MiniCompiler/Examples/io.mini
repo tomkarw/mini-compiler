@@ -1,0 +1,5 @@
+program {
+    //write 3;
+    //write 2.0;
+    write true;
+}

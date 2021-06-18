@@ -2,6 +2,7 @@
 
 namespace MiniCompiler
 {
+    // TODO: unused?
     public class BlockInstructionNode : SyntaxNode
     {
         public SyntaxNode Instructions;
