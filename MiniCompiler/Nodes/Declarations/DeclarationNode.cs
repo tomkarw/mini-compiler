@@ -4,9 +4,9 @@ namespace MiniCompiler
 {
     public class DeclarationNode : SyntaxNode
     {
-        public SyntaxNode BaseTypeNode ;
-        public SyntaxNode IdsOrEmptyNode ;
-        public SyntaxNode VariableNode ;
+        public SyntaxNode BaseTypeNode;
+        public SyntaxNode IdsOrEmptyNode;
+        public SyntaxNode VariableNode;
 
         public DeclarationNode(
             SyntaxNode baseTypeNode,
@@ -24,7 +24,7 @@ namespace MiniCompiler
         {
             IdsOrEmptyNode.Type = BaseTypeNode.Type;
             IdsOrEmptyNode.GenCode(ref sb);
-            
+
             VariableNode.Type = BaseTypeNode.Type;
             VariableNode.GenCode(ref sb);
 

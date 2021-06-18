@@ -27,8 +27,12 @@ namespace MiniCompiler
             sb.AppendLine($"store {type} %{expressionId}, {type}* %{variable.Id}");
 
             Type = type;
+            
+            // TODO: should I store variable value and return id to that?
+            var idLoadedValue = Context.GetNewId();
+            sb.AppendLine($"%{idLoadedValue} = load {Type}, {Type}* %{variable.Id}");
 
-            return variable.Id;
+            return idLoadedValue;
         }
     }
 }

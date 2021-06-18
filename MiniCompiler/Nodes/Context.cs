@@ -52,7 +52,7 @@ namespace MiniCompiler
         }
 
 
-        public static Variable GetVariable(SyntaxNode variable)
+        public static Variable GetVariable(SyntaxInfo variable)
         {
             // if variable doesn't exist, create a dummy one, add error and proceed
             if (!_variables.ContainsKey(variable.Text))

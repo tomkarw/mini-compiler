@@ -103,7 +103,7 @@ instruction	: SCURLY instructions ECURLY
 		}
 		;
 		
-assignmentExpression	: buildingBlockExpression
+assignmentExpression	: endExp
 			{
 			
 			}
@@ -116,9 +116,18 @@ assignmentExpression	: buildingBlockExpression
 			}
 			;
 			
-buildingBlockExpression	: value
+/* buildingBlockExpression */
+endExp			: value
 			{
 				$$ = $1;
+			}
+			| ID
+			{
+				$$ = new IdExpressionNode($1);
+			}
+			| SROUND assignmentExpression EROUND
+			{
+				$$ = $2;
 			}
 			;
 		
