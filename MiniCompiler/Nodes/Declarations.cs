@@ -2,14 +2,14 @@
 
 namespace MiniCompiler
 {
-    public abstract class BaseDeclarationsNode : SyntaxNode
+    public abstract class DeclarationsOrEmptyNode : SyntaxNode
     {
-        public BaseDeclarationsNode(int line, int column, string text) : base(line, column, text)
+        public DeclarationsOrEmptyNode(int line, int column, string text) : base(line, column, text)
         {
         }
     }
 
-    public class EmptyDeclarationsNode : BaseDeclarationsNode
+    public class EmptyDeclarationsNode : DeclarationsOrEmptyNode
     {
         public EmptyDeclarationsNode(int line, int column, string text) : base(line, column, text)
         {
@@ -21,13 +21,13 @@ namespace MiniCompiler
         }
     }
 
-    public class DeclarationsNode : BaseDeclarationsNode
+    public class DeclarationsNode : DeclarationsOrEmptyNode
     {
-        public BaseDeclarationsNode Declarations { get; set; }
+        public DeclarationsOrEmptyNode Declarations { get; set; }
         public DeclarationNode Declaration { get; set; }
 
         public DeclarationsNode(
-            BaseDeclarationsNode declarations,
+            DeclarationsOrEmptyNode declarations,
             DeclarationNode declaration
         ) : base(declarations.Line, declarations.Column, declarations.Text)
         {
@@ -46,17 +46,17 @@ namespace MiniCompiler
     public class DeclarationNode : SyntaxNode
     {
         public BaseTypeNode BaseTypeNode { get; set; }
-        public BaseIdsNode BaseIdsNode { get; set; }
+        public IdsOrEmptyNode IdsOrEmptyNode { get; set; }
         public IdNode IdNode { get; set; }
 
         public DeclarationNode(
             BaseTypeNode baseTypeNode,
-            BaseIdsNode baseIdsNode,
+            IdsOrEmptyNode idsOrEmptyNode,
             IdNode idNode
         ) : base(-1, -1, "")
         {
             BaseTypeNode = baseTypeNode;
-            BaseIdsNode = baseIdsNode;
+            IdsOrEmptyNode = idsOrEmptyNode;
             IdNode = idNode;
         }
 
@@ -68,19 +68,19 @@ namespace MiniCompiler
             // declare variable in llvm
             var id = Context.GetNewId();
             var type = BaseTypeNode.Type;
-            sb.Append($"%{id} = alloca {type}\n");
+            sb.AppendLine($"%{id} = alloca {type}");
             return null;
         }
     }
 
-    public abstract class BaseIdsNode : SyntaxNode
+    public abstract class IdsOrEmptyNode : SyntaxNode
     {
-        public BaseIdsNode(int line, int column, string text) : base(line, column, text)
+        public IdsOrEmptyNode(int line, int column, string text) : base(line, column, text)
         {
         }
     }
 
-    public class EmptyIdsNode : BaseDeclarationsNode
+    public class EmptyIdsNode : DeclarationsOrEmptyNode
     {
         public EmptyIdsNode(int line, int column, string text) : base(line, column, text)
         {
@@ -92,17 +92,17 @@ namespace MiniCompiler
         }
     }
 
-    public class IdsNode : BaseIdsNode
+    public class IdsNode : IdsOrEmptyNode
     {
-        public BaseIdsNode BaseIdsNode { get; set; }
+        public IdsOrEmptyNode IdsOrEmptyNode { get; set; }
         public IdNode IdNode { get; set; }
 
         public IdsNode(
-            BaseIdsNode baseIdsNode,
+            IdsOrEmptyNode idsOrEmptyNode,
             IdNode idNode
         ) : base(idNode.Line, idNode.Column, idNode.Text)
         {
-            BaseIdsNode = baseIdsNode;
+            IdsOrEmptyNode = idsOrEmptyNode;
             IdNode = idNode;
         }
 
@@ -112,7 +112,7 @@ namespace MiniCompiler
         }
     }
 
-    public class IdNode : BaseIdsNode
+    public class IdNode : IdsOrEmptyNode
     {
         public IdNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
         {

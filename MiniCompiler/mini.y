@@ -28,7 +28,7 @@ declarations        :
                     | declarations declaration
                     {
                         $$ = new DeclarationsNode(
-                            $1 as BaseDeclarationsNode,
+                            $1 as DeclarationsOrEmptyNode,
                             $2 as DeclarationNode
                         );
                     }
@@ -38,7 +38,7 @@ declaration         : type ids id SEMICOLON
                     {
                         $$ = new DeclarationNode(
                             $1 as BaseTypeNode,
-                            $2 as BaseIdsNode,
+                            $2 as IdsOrEmptyNode,
                             $3 as IdNode
                         );
                     }
@@ -50,16 +50,16 @@ type                : INT
                     }
                     ;
                     
-ids		    :
-		    {
-			$$ = new EmptyIdsNode(-1, -1, "");
-		    }
-		    | ids id COMMA
+ids		    : ids id COMMA
 		    {
 		    	$$ = new IdsNode(
-		    		$1 as BaseIdsNode,
+		    		$1 as IdsOrEmptyNode,
 		    		$2 as IdNode
 		    	);
+		    }
+		    | 
+		    {
+			$$ = new EmptyIdsNode(-1, -1, "");
 		    }
 		    ;
 
