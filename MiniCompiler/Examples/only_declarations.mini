@@ -1,7 +1,8 @@
 program {
-   int i;
-   double d;
-   bool b;
-   hex h;
-   int a, b, c;
+   int n;
+   int i, j, k;
+   double wynik;
+   double x, y;
+   bool isOK;
+   bool b1, b2, b3; 
 }

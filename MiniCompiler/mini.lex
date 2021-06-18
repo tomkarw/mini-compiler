@@ -66,5 +66,5 @@ CastDouble	\([ \t]*double[ \t]*\)
 
 public override void yyerror(string msg, params object[] args)
 {
-	Console.WriteLine($"{msg} on line {yylloc.StartLine} column {yylloc.StartColumn}");
+	Console.WriteLine("[" + yylloc.StartLine + ", " + yylloc.StartColumn + "] ERROR: " + msg + ".");
 }

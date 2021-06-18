@@ -132,9 +132,7 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: check if variable exists in context
-            
-            var id = Context.GetNewId();
+            var id = Context.AddVariable(Text, Type, Line, Column);
             sb.AppendLine($"%{id} = alloca {Type}");
             return null;
         }
