@@ -6,6 +6,7 @@ Properties/
 
 *.lst
 *.exe
+*.ll
 
 MiniCompiler/Scanner.cs
 MiniCompiler/Parser.cs

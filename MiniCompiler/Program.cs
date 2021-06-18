@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using GardensPoint;
 
 namespace MiniCompiler
@@ -8,11 +9,16 @@ namespace MiniCompiler
     {
         public static int Main(string[] args)
         {
-            var source = new FileStream(args[0], FileMode.Open);
+            var filename = args[0];
+            var source = new FileStream(filename, FileMode.Open);
             var scanner = new Scanner(source);
-            var program = new ProgramNode();
-            var parser = new Parser(scanner, program);
+            var parser = new Parser(scanner,  new ProgramNode());
             var success = parser.Parse();
+            var stringBuilder = new StringBuilder();
+            parser.program.GenCode(ref stringBuilder);
+
+            var output = $"{filename}.ll";
+            File.WriteAllText(output, stringBuilder.ToString());
             source.Close();
             Console.WriteLine(success);
             return 0;

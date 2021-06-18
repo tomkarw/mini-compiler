@@ -37,7 +37,9 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            Declarations.GenCode(ref sb);
+            Declaration.GenCode(ref sb);
+            return null;
         }
     }
 
@@ -61,7 +63,13 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            // TODO: add variable to context
+            
+            // declare variable in llvm
+            var id = 1;
+            var type = "i32";
+            sb.Append($"%{id} = alloca {type}\n");
+            return null;
         }
     }
 

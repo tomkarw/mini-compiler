@@ -73,4 +73,7 @@ id		    : ID
 
 public ProgramNode program {get;set;}
 
-public Parser(Scanner scanner, ProgramNode program) : base(scanner) { }
+public Parser(Scanner scanner, ProgramNode program) : base(scanner)
+{
+	this.program = program; 
+}
