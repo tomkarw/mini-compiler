@@ -154,6 +154,12 @@ writeInstruction	: WRITE assignmentExpression SEMICOLON
 					$2 as SyntaxNode
 				);
 			}
+			| WRITE assignmentExpression COMMA HEX SEMICOLON
+			{
+				$$ = new WriteHexNode(
+					$2 as SyntaxNode
+				);
+			}
 			;
 
 %%

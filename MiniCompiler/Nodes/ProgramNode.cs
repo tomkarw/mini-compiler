@@ -25,6 +25,7 @@ namespace MiniCompiler
         {
             // prolog
             // constants
+            // BUG: all strings after the one used get printed out in lli output...
             sb.AppendLine("@int_format = constant [2 x i8] c\"%d\"");
             sb.AppendLine("@double_format = constant [3 x i8] c\"%lf\"");
             sb.AppendLine("@hex_format = constant [2 x i8] c\"%X\"");

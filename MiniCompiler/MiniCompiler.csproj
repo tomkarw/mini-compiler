@@ -50,6 +50,7 @@
         <Compile Include="Nodes\Instructions\Expressions\LogicalExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
+        <Compile Include="Nodes\Instructions\IO\WriteHexNod.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />
         <Compile Include="Nodes\ProgramNode.cs" />
@@ -71,6 +72,7 @@
     <ItemGroup>
       <Content Include="AntiExamples\assignments.mini" />
       <Content Include="AntiExamples\empty_program.mini" />
+      <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
       <Content Include="Examples\assignments.ll" />
       <Content Include="Examples\assignments.mini" />
