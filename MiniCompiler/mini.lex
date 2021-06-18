@@ -1,17 +1,17 @@
 %using MiniCompiler;
 %namespace GardensPoint
 
-Id			[a-zA-Z][a-zA-Z0-9]*
+Id			    [a-zA-Z][a-zA-Z0-9]*
 
-ValDouble	(0|(([1-9][0-9]*))+)\.([0-9])+
-ValInt		0|[1-9]([0-9])*
-ValHex      0[xX][0-9a-fA-F]+
-ValBool		true|false
+ValDouble   	(0|(([1-9][0-9]*))+)\.([0-9])+
+ValInt		    0|[1-9]([0-9])*
+ValHex          0[xX][0-9a-fA-F]+
+ValBool		    true|false
 
-Comment		\/\/([^\n]|\\.)*
-String		\"([^\\\"\n]|\\.)*\"
-CastInt		\([ \t]*int[ \t]*\)
-CastDouble	\([ \t]*double[ \t]*\)
+Comment		    \/\/([^\n]|\\.)*
+String		    \"([^\\\"\n]|\\.)*\"
+CastToInt		\([ \t]*int[ \t]*\)
+CastToDouble	\([ \t]*double[ \t]*\)
 
 %%
 "program"		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.PROGRAM;			}
@@ -53,6 +53,8 @@ CastDouble	\([ \t]*double[ \t]*\)
 "\n"			{																						}
 "\r"			{																						}
 {Comment}		{																						}
+{CastToDouble}	{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.CASTTODOUBLE;		}		
+{CastToInt}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.CASTTOINT; 		}
 {ValDouble}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALDOUBLE;		    }
 {ValInt}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALINT;			}
 {ValHex}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALHEX;			}

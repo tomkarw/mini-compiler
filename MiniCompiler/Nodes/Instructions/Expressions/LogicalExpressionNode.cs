@@ -6,7 +6,7 @@ namespace MiniCompiler
     {
         public SyntaxNode Value;
         
-        public LogicalExpressionNode(SyntaxNode value) : base(value)
+        public LogicalExpressionNode(SyntaxNode value, SyntaxInfo operation, SyntaxNode ) : base(value)
         {
             Value = value;
         }

@@ -57,7 +57,7 @@ namespace MiniCompiler
             // if variable doesn't exist, create a dummy one, add error and proceed
             if (!_variables.ContainsKey(variable.Text))
             {
-                Errors.Add($"[]");
+                Errors.Add($"[{variable.Line}, {variable.Column}] ERROR: variable '{variable.Text}' was not declared!");
                 var id = GetNewId();
                 var newVariable = new Variable
                 {

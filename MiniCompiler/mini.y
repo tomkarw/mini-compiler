@@ -9,6 +9,7 @@
 %token ASSIGNMENT OR AND BITOR BITAND EQ NOTEQ GT GTE LT LTE
 %token PLUS MINUS MUL DIV NOT BITNOT SROUND EROUND SCURLY ECURLY COMMA SEMICOLON
 %token STRING VALINT VALBOOL VALDOUBLE VALHEX ID
+%token CASTTOINT CASTTODOUBLE
 
 
 %%
@@ -95,7 +96,7 @@ instruction		: SCURLY instructions ECURLY
 			{
 				$$ = $2;
 			}
-			| assignmentExpression SEMICOLON
+			| expression SEMICOLON
 			{
 				$$ = $1;
 			}
@@ -105,11 +106,11 @@ instruction		: SCURLY instructions ECURLY
 			}
 			;
 		
-assignmentExpression	: endExp /* TODO: change this to logicalExpression */
+expression		: logicalExpression
 			{
-			
+				$$ = $1;
 			}
-			| variableName ASSIGNMENT assignmentExpression
+			| variableName ASSIGNMENT expression
 			{
 				$$ = new AssignmentExpressionNode(
 					$1 as SyntaxNode,
@@ -118,8 +119,126 @@ assignmentExpression	: endExp /* TODO: change this to logicalExpression */
 			}
 			;
 			
-/* minimalExpression */
-endExp			: value
+			
+logicalExpression	: relationExpression
+			{
+				$$ = $1;
+			}
+			| logicalExpression logicalOp relationExpression
+			{
+			}
+			;
+			
+logicalOp		: OR
+			{
+			}
+			| AND
+			{
+			}
+			;
+			
+relationExpression	: additiveExp
+			{
+			}
+			| relationExpression relationOp additiveExp
+			{
+			}
+			;
+			
+relationOp		: GT
+			{
+			}
+			| LT
+			{
+			}
+			| GTE
+			{
+			}
+			| LTE
+			{
+			}
+			| NOTEQ
+			{
+			}
+			| EQ
+			{
+			}
+			;
+			
+additiveExp		: multiplicativeExp
+			{
+			}
+			| additiveExp additiveOp multiplicativeExp
+			{
+			}
+			;
+			
+additiveOp		: PLUS
+			{
+			}
+			| MINUS
+			{
+			}
+			;
+			
+multiplicativeExp	: bitwiseExp
+			{
+			}
+			| multiplicativeExp multiplicativeOp bitwiseExp
+			{
+			}
+			;
+			
+multiplicativeOp	: MUL
+			{
+			}
+			| DIV
+			{
+			}
+			;
+			
+bitwiseExp		: unaryExp
+			{
+			}
+			| bitwiseExp bitwiseOp unaryExp
+			{
+			}
+			;
+			
+bitwiseOp		: BITOR
+			{
+			}
+			| BITAND
+			{
+			}
+			;
+			
+unaryExp		: basicExpression
+			{
+			}
+			| unaryOp unaryExp
+			{
+			}
+			;
+			
+unaryOp			: MINUS
+			{
+			}
+			| BITNOT
+			{
+			}
+			| NOT
+			{
+			}
+			| CASTTOINT
+			{
+			}
+			| CASTTODOUBLE
+			{
+			}
+			;
+
+basicExpression		: value
 			{
 				$$ = $1;
 			}
@@ -127,7 +246,7 @@ endExp			: value
 			{
 				$$ = new IdExpressionNode($1);
 			}
-			| SROUND assignmentExpression EROUND
+			| SROUND expression EROUND
 			{
 				$$ = $2;
 			}
@@ -151,13 +270,13 @@ value			: VALINT
 			}
 			;
 
-writeInstruction	: WRITE assignmentExpression SEMICOLON
+writeInstruction	: WRITE expression SEMICOLON
 			{
 				$$ = new WriteNode(
 					$2 as SyntaxNode
 				);
 			}
-			| WRITE assignmentExpression COMMA HEX SEMICOLON
+			| WRITE expression COMMA HEX SEMICOLON
 			{
 				$$ = new WriteHexNode(
 					$2 as SyntaxNode

@@ -79,6 +79,8 @@
       <Content Include="Examples\assignments.mini" />
       <Content Include="Examples\empty_program.ll" />
       <Content Include="Examples\empty_program.mini" />
+      <Content Include="Examples\expressions.ll" />
+      <Content Include="Examples\expressions.mini" />
       <Content Include="Examples\io.ll" />
       <Content Include="Examples\io.mini" />
       <Content Include="Examples\only_declarations.ll" />
