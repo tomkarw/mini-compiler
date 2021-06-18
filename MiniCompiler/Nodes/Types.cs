@@ -11,13 +11,15 @@ namespace MiniCompiler
     
     public class IntTypeNode : BaseTypeNode
     {
+        public override string Type => "i32";
+        
         public IntTypeNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
         {
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            return null;
         }
     }
 }

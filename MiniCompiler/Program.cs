@@ -17,7 +17,7 @@ namespace MiniCompiler
             var stringBuilder = new StringBuilder();
             parser.program.GenCode(ref stringBuilder);
 
-            var output = $"{filename}.ll";
+            var output = Path.ChangeExtension(filename, ".ll");
             File.WriteAllText(output, stringBuilder.ToString());
             source.Close();
             Console.WriteLine(success);

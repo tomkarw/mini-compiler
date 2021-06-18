@@ -64,7 +64,7 @@ CastDouble	\([ \t]*double[ \t]*\)
 %%
 
 
-public override void yyerror(string format, params object[] args)
+public override void yyerror(string msg, params object[] args)
 {
-	Console.WriteLine("Scanner error: " + format);
+	Console.WriteLine($"{msg} on line {yylloc.StartLine} column {yylloc.StartColumn}");
 }

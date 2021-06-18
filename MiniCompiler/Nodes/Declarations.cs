@@ -66,8 +66,8 @@ namespace MiniCompiler
             // TODO: add variable to context
             
             // declare variable in llvm
-            var id = 1;
-            var type = "i32";
+            var id = Context.GetNewId();
+            var type = BaseTypeNode.Type;
             sb.Append($"%{id} = alloca {type}\n");
             return null;
         }

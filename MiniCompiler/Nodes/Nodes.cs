@@ -18,7 +18,7 @@ namespace MiniCompiler
     }
     public abstract class SyntaxNode : SyntaxInfo
     {
-        public int Type { get; set; }
+        public virtual string Type { get; set; }
         
         public SyntaxNode(int line, int column, string text) : base(line, column, text)
         {
@@ -53,11 +53,18 @@ namespace MiniCompiler
         public override string GenCode(ref StringBuilder sb)
         {
             // TODO: prolog
+            sb.AppendLine("declare i32 @printf(i8*, ...)");
+            sb.AppendLine("declare i32 @scanf(i8*, ...)");
+            sb.AppendLine("define i32 @main ()");
+            sb.AppendLine("{");
+
             Declarations.GenCode(ref sb);
             // Instructions.GenCode(ref sb);
-            return null;
 
             // TODO: epilog
+            sb.AppendLine("ret i32 0");
+            sb.AppendLine("}");
+            return null;
         }
     }
 

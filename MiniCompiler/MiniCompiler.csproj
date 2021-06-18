@@ -38,6 +38,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Nodes\Context.cs" />
         <Compile Include="Nodes\Declarations.cs" />
         <Compile Include="Nodes\Nodes.cs" />
         <Compile Include="Nodes\Types.cs" />
@@ -50,8 +51,8 @@
     <ItemGroup>
       <Content Include=".gitignore" />
       <Content Include="Examples\empty_program.mini" />
+      <Content Include="Examples\only_declarations.ll" />
       <Content Include="Examples\only_declarations.mini" />
-      <Content Include="Examples\only_declarations.mini.ll" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />
     </ItemGroup>
