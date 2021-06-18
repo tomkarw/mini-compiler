@@ -160,6 +160,10 @@ writeInstruction	: WRITE assignmentExpression SEMICOLON
 					$2 as SyntaxNode
 				);
 			}
+			| WRITE STRING SEMICOLON
+			{
+				$$ = new WriteStringNode($2);
+			}
 			;
 
 %%

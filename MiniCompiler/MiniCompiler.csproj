@@ -52,6 +52,7 @@
         <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteHexNod.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteNode.cs" />
+        <Compile Include="Nodes\Instructions\IO\WriteStringNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />
         <Compile Include="Nodes\ProgramNode.cs" />
         <Compile Include="Nodes\SyntaxNode.cs" />
