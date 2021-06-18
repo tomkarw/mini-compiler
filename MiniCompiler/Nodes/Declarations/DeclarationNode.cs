@@ -6,7 +6,7 @@ namespace MiniCompiler
     {
         public SyntaxNode BaseTypeNode { get; set; }
         public SyntaxNode IdsOrEmptyNode { get; set; }
-        public SyntaxNode IdNode { get; set; }
+        public SyntaxNode VariableNode { get; set; }
 
         public DeclarationNode(
             SyntaxNode baseTypeNode,
@@ -16,7 +16,7 @@ namespace MiniCompiler
         {
             BaseTypeNode = baseTypeNode;
             IdsOrEmptyNode = idsOrEmptyNode;
-            IdNode = idNode;
+            VariableNode = idNode;
         }
 
 
@@ -25,8 +25,8 @@ namespace MiniCompiler
             IdsOrEmptyNode.Type = BaseTypeNode.Type;
             IdsOrEmptyNode.GenCode(ref sb);
             
-            IdNode.Type = BaseTypeNode.Type;
-            IdNode.GenCode(ref sb);
+            VariableNode.Type = BaseTypeNode.Type;
+            VariableNode.GenCode(ref sb);
 
             return null;
         }

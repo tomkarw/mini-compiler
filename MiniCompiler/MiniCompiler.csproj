@@ -41,8 +41,8 @@
         <Compile Include="Nodes\Context.cs" />
         <Compile Include="Nodes\Declarations\DeclarationNode.cs" />
         <Compile Include="Nodes\Declarations\DeclarationsNode.cs" />
-        <Compile Include="Nodes\Declarations\IdNode.cs" />
-        <Compile Include="Nodes\Declarations\IdsNode.cs" />
+        <Compile Include="Nodes\Declarations\VariableNode.cs" />
+        <Compile Include="Nodes\Declarations\VariablesNode.cs" />
         <Compile Include="Nodes\EmptyNode.cs" />
         <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />

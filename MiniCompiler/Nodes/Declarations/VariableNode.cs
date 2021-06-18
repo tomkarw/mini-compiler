@@ -2,9 +2,9 @@
 
 namespace MiniCompiler
 {
-    public class IdNode : SyntaxNode
+    public class VariableNode : SyntaxNode
     {
-        public IdNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
+        public VariableNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
         {
         }
 

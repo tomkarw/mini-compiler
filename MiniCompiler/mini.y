@@ -35,7 +35,7 @@ declarations	:
 		}
 		;
                     
-declaration	: type ids id SEMICOLON
+declaration	: type variableNames variableName SEMICOLON
 		{
 			$$ = new DeclarationNode(
 				$1 as SyntaxNode,
@@ -64,22 +64,22 @@ type		: INT
 		}
 		;
                     
-ids		: 		 
+variableNames	: 		 
 		{
 			$$ = new EmptyNode(-1, -1, null);
 		}
                 | ids id COMMA
 		{
-			$$ = new IdsNode(
+			$$ = new VariablesNode(
 				$1 as SyntaxNode,
 				$2 as SyntaxNode
 		    	);
 		}
 		;
 
-id		: ID
+variableName	: ID
 		{
-			$$ = new IdNode($1);
+			$$ = new VariableNode($1);
 		}
 		;
 
@@ -105,7 +105,7 @@ instruction	: SCURLY instructions ECURLY
 		| expression
 		;
 		
-expression	: PLUS
+expression	: 
 		;
 
 %%

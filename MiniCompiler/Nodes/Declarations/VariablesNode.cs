@@ -2,18 +2,18 @@
 
 namespace MiniCompiler
 {
-    public class IdsNode : SyntaxNode
+    public class VariablesNode : SyntaxNode
     {
         public SyntaxNode IdsOrEmptyNode { get; set; }
-        public SyntaxNode IdNode { get; set; }
+        public SyntaxNode VariableNode { get; set; }
 
-        public IdsNode(
+        public VariablesNode(
             SyntaxNode idsOrEmptyNode,
             SyntaxNode idNode
         ) : base(idNode.Line, idNode.Column, idNode.Text)
         {
             IdsOrEmptyNode = idsOrEmptyNode;
-            IdNode = idNode;
+            VariableNode = idNode;
         }
 
         public override string GenCode(ref StringBuilder sb)
@@ -25,8 +25,8 @@ namespace MiniCompiler
                 IdsOrEmptyNode.GenCode(ref sb);
             }
             
-            IdNode.Type = Type;
-            IdNode.GenCode(ref sb);
+            VariableNode.Type = Type;
+            VariableNode.GenCode(ref sb);
             return null;
         }
     }
