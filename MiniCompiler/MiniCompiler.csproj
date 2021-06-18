@@ -50,7 +50,7 @@
         <Compile Include="Nodes\Instructions\Expressions\LogicalExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
-        <Compile Include="Nodes\Instructions\IO\WriteHexNod.cs" />
+        <Compile Include="Nodes\Instructions\IO\WriteHexNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteStringNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />

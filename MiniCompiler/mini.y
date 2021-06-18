@@ -97,9 +97,12 @@ instruction		: SCURLY instructions ECURLY
 			}
 			| assignmentExpression SEMICOLON
 			{
-				
+				$$ = $1;
 			}
 			| writeInstruction
+			{
+				$$ = $1;
+			}
 			;
 		
 assignmentExpression	: endExp /* TODO: change this to logicalExpression */

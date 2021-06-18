@@ -4,7 +4,7 @@ program {
     // write 3;
     // write 2.0;
     // write true;
-    // write 10,hex;
+    write 10,hex;
     // write x;
     write "hello world!\n";
 }
