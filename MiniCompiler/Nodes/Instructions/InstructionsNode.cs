@@ -23,28 +23,4 @@ namespace MiniCompiler
             return null;
         }
     }
-
-    public abstract class InstructionNode : SyntaxNode
-    {
-        public InstructionNode(
-        ) : base(-1, -1, null)
-        {
-        }
-    }
-
-    public class BlockInstructionNode : SyntaxNode
-    {
-        public SyntaxNode Instructions;
-        
-        public BlockInstructionNode(SyntaxNode instructions) : base(instructions.Line, instructions.Column, instructions.Text)
-        {
-            Instructions = instructions;
-        }
-
-        public override string GenCode(ref StringBuilder sb)
-        {
-            Instructions.GenCode(ref sb);
-            return null;
-        }
-    }
 }

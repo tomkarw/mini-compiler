@@ -39,10 +39,20 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Nodes\Context.cs" />
-        <Compile Include="Nodes\Declarations.cs" />
-        <Compile Include="Nodes\Instructions.cs" />
-        <Compile Include="Nodes\Nodes.cs" />
-        <Compile Include="Nodes\Types.cs" />
+        <Compile Include="Nodes\Declarations\DeclarationNode.cs" />
+        <Compile Include="Nodes\Declarations\DeclarationsNode.cs" />
+        <Compile Include="Nodes\Declarations\IdNode.cs" />
+        <Compile Include="Nodes\Declarations\IdsNode.cs" />
+        <Compile Include="Nodes\EmptyNode.cs" />
+        <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
+        <Compile Include="Nodes\Instructions\InstructionNode.cs" />
+        <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
+        <Compile Include="Nodes\SyntaxInfo.cs" />
+        <Compile Include="Nodes\ProgramNode.cs" />
+        <Compile Include="Nodes\SyntaxNode.cs" />
+        <Compile Include="Nodes\Types\BoolTypeNode.cs" />
+        <Compile Include="Nodes\Types\DoubleTypeNode.cs" />
+        <Compile Include="Nodes\Types\IntTypeNode.cs" />
         <Compile Include="Parser.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,7 +60,6 @@
         <Compile Include="ShiftReduceParserCode.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include=".gitignore" />
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
       <Content Include="Examples\assignments.mini" />
