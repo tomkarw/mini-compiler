@@ -56,7 +56,11 @@
         <Compile Include="Nodes\Types\BoolTypeNode.cs" />
         <Compile Include="Nodes\Types\DoubleTypeNode.cs" />
         <Compile Include="Nodes\Types\IntTypeNode.cs" />
+        <Compile Include="Nodes\Values\DoubleValueNode.cs" />
+        <Compile Include="Nodes\Values\BoolValueNode.cs" />
+        <Compile Include="Nodes\Values\HexValueNode.cs" />
         <Compile Include="Nodes\Values\IntValueNode.cs" />
+        <Compile Include="Nodes\Values\ValueNode.cs" />
         <Compile Include="Parser.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +68,7 @@
         <Compile Include="ShiftReduceParserCode.cs" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="AntiExamples\assignments.mini" />
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
       <Content Include="Examples\assignments.ll" />

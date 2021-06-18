@@ -116,7 +116,7 @@ assignmentExpression	: endExp
 			}
 			;
 			
-/* buildingBlockExpression */
+/* minimalExpression */
 endExp			: value
 			{
 				$$ = $1;
@@ -134,6 +134,18 @@ endExp			: value
 value			: VALINT
 			{
 				$$ = new IntValueNode($1);
+			}
+			| VALDOUBLE
+			{
+				$$ = new DoubleValueNode($1);
+			}
+			| VALBOOL
+			{
+				$$ = new BoolValueNode($1);
+			}
+			| VALHEX
+			{
+				$$ = new HexValueNode($1);
 			}
 			;
 

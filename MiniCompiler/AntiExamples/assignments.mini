@@ -1,0 +1,5 @@
+program {
+   int a;
+   double b;
+   a = 2.0;
+}

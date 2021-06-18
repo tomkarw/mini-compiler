@@ -4,10 +4,11 @@ namespace MiniCompiler
 {
     public class AssignmentExpressionNode : SyntaxNode
     {
-        public SyntaxNode Variable ;
-        public SyntaxNode Expression ;
-        
-        public AssignmentExpressionNode(SyntaxNode variable, SyntaxNode expression) : base(variable.Line, variable.Column, variable.Text)
+        public SyntaxNode Variable;
+        public SyntaxNode Expression;
+
+        public AssignmentExpressionNode(SyntaxNode variable, SyntaxNode expression) : base(variable.Line,
+            variable.Column, variable.Text)
         {
             Variable = variable;
             Expression = expression;
@@ -16,19 +17,35 @@ namespace MiniCompiler
         public override string GenCode(ref StringBuilder sb)
         {
             var expressionId = Expression.GenCode(ref sb);
-            
+
             var variable = Context.GetVariable(Variable);
-            
-            // TODO: check if types match or implicit conversion allowed
 
-            var type = "i32";
-            
+            // check if types match or implicit conversion is allowed
+            if (variable.Type != Expression.Type)
+            {
+                if (variable.Type == "double" && Expression.Type == "i32")
+                {
+                    // implicit conversion
+                    var oldExpressionId = expressionId;
+                    expressionId = Context.GetNewId();
+                    sb.AppendLine($"%{expressionId} = sitofp i32 %{oldExpressionId} to double");
+                }
+                else
+                {
+                    Context.Errors.Add(
+                        $"[{Expression.Line}, {Expression.Column}] " +
+                        $"ERROR: Cannot implicitly cast from {Expression.Type} to {variable.Type}, " +
+                        $"try using casting unary operator."
+                    );
+                }
+            }
+
             // generate llvm code
-            sb.AppendLine($"store {type} %{expressionId}, {type}* %{variable.Id}");
+            sb.AppendLine($"store {variable.Type} %{expressionId}, {variable.Type}* %{variable.Id}");
 
-            Type = type;
-            
-            // TODO: should I store variable value and return id to that?
+            Type = variable.Type;
+
+            // return id of loaded value for chained assignments
             var idLoadedValue = Context.GetNewId();
             sb.AppendLine($"%{idLoadedValue} = load {Type}, {Type}* %{variable.Id}");
 

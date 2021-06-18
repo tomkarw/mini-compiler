@@ -1,7 +1,13 @@
 program {
    int x;
    int a, b;
+   double d;
+   bool isOK;
    x = 3;
-   a = b = 5;
+   a = b = 5; // chained assignment
    a = (b = 6);
+   d = 1;
+   b = 0xA; // hex value to int type
+   isOK = true;
+   isOK = false;
 }
