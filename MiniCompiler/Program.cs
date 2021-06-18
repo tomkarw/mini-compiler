@@ -14,6 +14,7 @@ namespace MiniCompiler
             var scanner = new Scanner(source);
             var parser = new Parser(scanner,  new ProgramNode());
             var success = parser.Parse();
+            source.Close();
 
             // syntax errors
             if (!success)
@@ -36,7 +37,6 @@ namespace MiniCompiler
             
             var output = Path.ChangeExtension(filename, ".ll");
             File.WriteAllText(output, stringBuilder.ToString());
-            source.Close();
             
             return 0;
         }

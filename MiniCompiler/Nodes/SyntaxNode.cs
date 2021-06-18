@@ -10,6 +10,11 @@ namespace MiniCompiler
         {
         }
 
+        public SyntaxNode(SyntaxInfo si) : base(si.Line, si.Column, si.Text)
+        {
+            
+        }
+
         public abstract string GenCode(ref StringBuilder sb);
         
         // public abstract char CheckType();

@@ -45,6 +45,8 @@
         <Compile Include="Nodes\Declarations\VariablesNode.cs" />
         <Compile Include="Nodes\EmptyNode.cs" />
         <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\AssignmentExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\LogicalExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />
@@ -53,6 +55,7 @@
         <Compile Include="Nodes\Types\BoolTypeNode.cs" />
         <Compile Include="Nodes\Types\DoubleTypeNode.cs" />
         <Compile Include="Nodes\Types\IntTypeNode.cs" />
+        <Compile Include="Nodes\Values\IntValueNode.cs" />
         <Compile Include="Parser.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +65,7 @@
     <ItemGroup>
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
+      <Content Include="Examples\assignments.ll" />
       <Content Include="Examples\assignments.mini" />
       <Content Include="Examples\empty_program.ll" />
       <Content Include="Examples\empty_program.mini" />

@@ -4,8 +4,8 @@ namespace MiniCompiler
 {
     public class VariablesNode : SyntaxNode
     {
-        public SyntaxNode IdsOrEmptyNode { get; set; }
-        public SyntaxNode VariableNode { get; set; }
+        public SyntaxNode IdsOrEmptyNode ;
+        public SyntaxNode VariableNode ;
 
         public VariablesNode(
             SyntaxNode idsOrEmptyNode,

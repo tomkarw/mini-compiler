@@ -5,8 +5,8 @@ namespace MiniCompiler
     public class ProgramNode : SyntaxNode
     {
 
-        public SyntaxNode Declarations { get; set; }
-        public SyntaxNode Instructions { get; set; }
+        public SyntaxNode Declarations ;
+        public SyntaxNode Instructions ;
 
         public ProgramNode() : base(-1, -1, null)
         {

@@ -4,8 +4,8 @@ namespace MiniCompiler
 {
     public class DeclarationsNode : SyntaxNode
     {
-        public SyntaxNode Declarations { get; set; }
-        public SyntaxNode Declaration { get; set; }
+        public SyntaxNode Declarations ;
+        public SyntaxNode Declaration ;
 
         public DeclarationsNode(
             SyntaxNode declarations,

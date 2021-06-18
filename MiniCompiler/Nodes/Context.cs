@@ -17,7 +17,7 @@ namespace MiniCompiler
         private static Dictionary<string, Variable> _variables = new Dictionary<string, Variable>();
         public static List<string> Errors = new List<string>();
 
-        private static string GetNewId()
+        public static string GetNewId()
         {
             return $"v{_i++}";
         }
@@ -49,6 +49,29 @@ namespace MiniCompiler
             }
 
             return id;
+        }
+
+
+        public static Variable GetVariable(SyntaxNode variable)
+        {
+            // if variable doesn't exist, create a dummy one, add error and proceed
+            if (!_variables.ContainsKey(variable.Text))
+            {
+                Errors.Add($"[]");
+                var id = GetNewId();
+                var newVariable = new Variable
+                {
+                    Name = variable.Text,
+                    Type = "unknown",
+                    Id = id,
+                    Line = -1,
+                    Column = -1
+                };
+                _variables.Add(variable.Text, newVariable);
+                return newVariable;
+            }
+
+            return _variables[variable.Text];
         }
     }
 }

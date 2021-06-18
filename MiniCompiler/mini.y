@@ -57,18 +57,13 @@ type		: INT
 		{
 			$$ = new BoolTypeNode($1);
 		}
-		| HEX
-		{
-			/* TODO: good choice? */
-			$$ = new IntTypeNode($1);
-		}
 		;
                     
 variableNames	: 		 
 		{
 			$$ = new EmptyNode(-1, -1, null);
 		}
-                | ids id COMMA
+                | variableNames variableName COMMA
 		{
 			$$ = new VariablesNode(
 				$1 as SyntaxNode,
@@ -102,11 +97,36 @@ instruction	: SCURLY instructions ECURLY
 				$2 as SyntaxNode
 			);
 		}
-		| expression
+		| assignmentExpression SEMICOLON
+		{
+			
+		}
 		;
 		
-expression	: 
-		;
+assignmentExpression	: buildingBlockExpression
+			{
+			
+			}
+			| variableName ASSIGNMENT assignmentExpression
+			{
+				$$ = new AssignmentExpressionNode(
+					$1 as SyntaxNode,
+					$3 as SyntaxNode
+				);
+			}
+			;
+			
+buildingBlockExpression	: value
+			{
+				$$ = $1;
+			}
+			;
+		
+value			: VALINT
+			{
+				$$ = new IntValueNode($1);
+			}
+			;
 
 %%
 
