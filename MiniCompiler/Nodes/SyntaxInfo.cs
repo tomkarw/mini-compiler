@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace MiniCompiler
+﻿namespace MiniCompiler
 {
     public class SyntaxInfo
     {

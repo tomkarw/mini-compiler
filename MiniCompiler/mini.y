@@ -113,15 +113,9 @@ instruction		: SCURLY instructions ECURLY
 				$$ = $1;
 			}
 			| writeInstruction
-			{
-				$$ = $1;
-			}
 			;
 		
 expression		: logicalExpression
-			{
-				$$ = $1;
-			}
 			| variableName ASSIGNMENT expression
 			{
 				$$ = new AssignmentExpressionNode(
@@ -133,9 +127,6 @@ expression		: logicalExpression
 			
 			
 logicalExpression	: relationExpression
-			{
-				$$ = $1;
-			}
 			| logicalExpression logicalOp relationExpression
 			{
 				$$ = new LogicalExpressionNode(
@@ -147,19 +138,10 @@ logicalExpression	: relationExpression
 			;
 			
 logicalOp		: OR
-			{
-				$$ = $1;
-			}
 			| AND
-			{
-				$$ = $1;
-			}
 			;
 			
 relationExpression	: additiveExpression
-			{
-				$$ = $1;
-			}
 			| relationExpression relationOperation additiveExpression
 			{
 				$$ = new RelationExpressionNode(
@@ -179,9 +161,6 @@ relationOperation	: EQ
 			;
 			
 additiveExpression	: multiplicativeExp
-			{
-				$$ = $1;
-			}
 			| additiveExpression additiveOp multiplicativeExp
 			{
 				$$ = new AdditiveExpressionNode(
@@ -227,8 +206,6 @@ bitwiseOp		: BITOR
 			;
 			
 unaryExp		: basicExpression
-			{
-			}
 			| unaryOp unaryExp
 			{
 				$$ = new UnaryExpressionNode(
@@ -246,9 +223,6 @@ unaryOp			: MINUS
 			;
 
 basicExpression		: value
-			{
-				$$ = $1;
-			}
 			| ID
 			{
 				$$ = new IdExpressionNode($1);

@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace MiniCompiler
+﻿namespace MiniCompiler
 {
     public class BoolValueNode : ValueNode
     {
