@@ -21,7 +21,7 @@ namespace MiniCompiler
             : base(additiveExpression)
         {
             AdditiveExpression = additiveExpression;
-            AdditiveOperator = additiveExpression;
+            AdditiveOperator = additiveOperator;
             MultiplicativeExpression = multiplicativeExpression;
         }
 
@@ -30,20 +30,20 @@ namespace MiniCompiler
             var id = Context.GetNewId();
             var lhs = AdditiveExpression.GenCode(ref sb);
             var rhs = MultiplicativeExpression.GenCode(ref sb);
-            string cmp;
-            string cmpType;
+            string op;
+            string opType;
             switch (AdditiveExpression.Type, MultiplicativeExpression.Type)
             {
                 case ("i32", "i32"):
                 {
-                    cmp = "";
-                    cmpType = "i32";
+                    op = "";
+                    opType = "i32";
                     break;
                 }
                 case ("double", "double"):
                 {
-                    cmp = "fcmp o";
-                    cmpType = "double";
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 case ("i32", "double"):
@@ -53,8 +53,8 @@ namespace MiniCompiler
                     lhs = Context.GetNewId();
                     sb.AppendLine($"%{lhs} = sitofp i32 %{oldId} to double");
 
-                    cmp = "fcmpc o";
-                    cmpType = "double";
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 case ("double", "i32"):
@@ -64,23 +64,23 @@ namespace MiniCompiler
                     rhs = Context.GetNewId();
                     sb.AppendLine($"%{rhs} = sitofp i32 %{oldId} to double");
 
-                    cmp = "fcmp o";
-                    cmpType = "double";
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 default:
                 {
-                    cmp = "icmp ";
-                    cmpType = "i32";
+                    op = "";
+                    opType = "i32";
                     Context.AddError(AdditiveExpression.Line, AdditiveExpression.Column,
-                        $"Cannot compare {AdditiveExpression.Type} and {MultiplicativeExpression.Type} values");
+                        $"Cannot use '{AdditiveOperator.Text}' with {AdditiveExpression.Type} and {MultiplicativeExpression.Type} values");
                     break;
                 }
             }
 
-            Type = "i1";
-
-            sb.AppendLine($"%{id} = {cmp}{_operationMappings[AdditiveOperator.Text]} {cmpType} %{lhs}, %{rhs}");
+            Type = opType;
+            
+            sb.AppendLine($"%{id} = {op}{_operationMappings[AdditiveOperator.Text]} {opType} %{lhs}, %{rhs}");
 
             return id;
         }

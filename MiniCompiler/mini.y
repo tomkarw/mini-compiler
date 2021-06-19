@@ -171,23 +171,11 @@ relationExpression	: additiveExpression
 			;
 			
 relationOperation	: EQ
-			{
-			}
 			| NOTEQ
-			{
-			}
 			| GT
-			{
-			}
 			| GTE
-			{
-			}
 			| LT
-			{
-			}
 			| LTE
-			{
-			}
 			;
 			
 additiveExpression	: multiplicativeExp
@@ -205,11 +193,7 @@ additiveExpression	: multiplicativeExp
 			;
 			
 additiveOp		: PLUS
-			{
-			}
 			| MINUS
-			{
-			}
 			;
 			
 multiplicativeExp	: bitwiseExp

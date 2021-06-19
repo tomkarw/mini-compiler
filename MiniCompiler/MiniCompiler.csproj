@@ -80,10 +80,12 @@
       <Content Include="AntiExamples\expressions.mini" />
       <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
+      <Content Include="Examples\additive_expressions.mini" />
+      <Content Include="Examples\additive_expressions.mini.ll" />
       <Content Include="Examples\assignments.mini" />
+      <Content Include="Examples\comparisons.mini.ll" />
       <Content Include="Examples\empty_program.mini" />
-      <Content Include="Examples\expressions.mini" />
-      <Content Include="Examples\expressions.mini.ll" />
+      <Content Include="Examples\comparisons.mini" />
       <Content Include="Examples\io.mini" />
       <Content Include="Examples\only_declarations.mini" />
       <Content Include="Examples\only_instructions.mini" />

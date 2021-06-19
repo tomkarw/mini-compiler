@@ -22,6 +22,10 @@ program {
     write x >= y;
     write x < y;
     write x <= y;
+        
+    // int + double
+    write a == x;
+    write a > x;
     
     // bool
     i = true;

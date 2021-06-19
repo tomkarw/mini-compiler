@@ -71,7 +71,7 @@ namespace MiniCompiler
                     lhs = Context.GetNewId();
                     sb.AppendLine($"%{lhs} = sitofp i32 %{oldId} to double");
 
-                    cmp = "fcmpc o";
+                    cmp = "fcmp o";
                     cmpType = "double";
                     break;
                 }
