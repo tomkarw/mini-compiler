@@ -1,0 +1,5 @@
+program {     
+    bool isOK;
+    read isOK;
+    write isOK;
+}

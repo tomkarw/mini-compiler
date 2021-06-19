@@ -90,9 +90,11 @@
       <Content Include="AntiExamples\expressions.mini" />
       <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
+      <Content Include="AntiExamples\read.mini" />
       <Content Include="Examples\additive_expressions.mini" />
       <Content Include="Examples\additive_expressions.mini.ll" />
       <Content Include="Examples\assignments.mini" />
+      <Content Include="Examples\assignments.mini.ll" />
       <Content Include="Examples\bitwise_expressions.mini" />
       <Content Include="Examples\bitwise_expressions.mini.ll" />
       <Content Include="Examples\comparisons.mini.ll" />
@@ -100,8 +102,10 @@
       <Content Include="Examples\comparisons.mini" />
       <Content Include="Examples\if.mini" />
       <Content Include="Examples\if_edge_case.mini" />
-      <Content Include="Examples\io.mini" />
-      <Content Include="Examples\io.mini.ll" />
+      <Content Include="Examples\read.mini" />
+      <Content Include="Examples\read.mini.ll" />
+      <Content Include="Examples\write.mini" />
+      <Content Include="Examples\write.mini.ll" />
       <Content Include="Examples\logical_expressions.mini" />
       <Content Include="Examples\logical_expressions.mini.ll" />
       <Content Include="Examples\multiplicative_expressions.mini" />

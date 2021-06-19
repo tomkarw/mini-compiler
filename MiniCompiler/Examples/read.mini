@@ -1,0 +1,10 @@
+program {     
+    int i, h;
+    double d;
+    read i;
+    write i;
+    write "\n";
+    read d;
+    write d;
+    write "\n";
+}

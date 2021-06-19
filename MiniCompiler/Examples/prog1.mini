@@ -1,11 +1,4 @@
 program {
-    write 1;
-    write "\n";
-    write 2.0;
-    write "\n";
-    write true;
-    write "\n";
-    write false;
-    write "\n";
-    write 10,hex;
+    // asdasd
+    write "\"\";
 }
