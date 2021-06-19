@@ -1,13 +1,16 @@
-program {
-    int x;
-    write 1;
-    write 2.0;
-    write true;
-    write false;
-    write 10,hex;
-    
-    x = 3;
-    write x;
-    
-    // write "hello world!\n";
+program {     
+    int i;     
+    double d;     
+    bool b;  
+    i = 11;   
+    d = 123.456;    
+    b = true;   
+    write i;    
+    write "\n";   
+    write i,hex;  
+    write "\n";  
+    write d;   
+    write "\n";  
+    write b;   
+    write "\n";  
 }

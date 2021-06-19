@@ -19,7 +19,6 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: implement as shortened operations
             var lhs = _lhsExpression.GenCode(ref sb);
             var rhs = _rhsExpression.GenCode(ref sb);
 
