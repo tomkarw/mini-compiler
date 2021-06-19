@@ -1,10 +1,13 @@
 program {
-    // int x;
-    // x = 5;
-    // write 3;
-    // write 2.0;
-    // write true;
+    int x;
+    write 1;
+    write 2.0;
+    write true;
+    write false;
     write 10,hex;
-    // write x;
-    write "hello world!\n";
+    
+    x = 3;
+    write x;
+    
+    // write "hello world!\n";
 }

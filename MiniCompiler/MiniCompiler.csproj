@@ -101,6 +101,7 @@
       <Content Include="Examples\if.mini" />
       <Content Include="Examples\if_edge_case.mini" />
       <Content Include="Examples\io.mini" />
+      <Content Include="Examples\io.mini.ll" />
       <Content Include="Examples\multiplicative_expressions.mini" />
       <Content Include="Examples\multiplicative_expressions.mini.ll" />
       <Content Include="Examples\only_declarations.mini" />

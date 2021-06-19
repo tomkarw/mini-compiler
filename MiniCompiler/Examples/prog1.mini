@@ -1,9 +1,7 @@
 program {
-    int n;
-    n = 0;
-    while ( n<10 )
-    {
-        n = n + 1;
-        write n;
-    }
+    write 1;
+    write 2.0;
+    write true;
+    write false;
+    write 10,hex;
 }

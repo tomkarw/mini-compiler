@@ -20,7 +20,7 @@ namespace MiniCompiler
             {
                 case "i32":
                 {
-                    sb.AppendLine($"call i32 (i8*, ...) @printf(i8* bitcast ([4 x i8]* @hex_format to i8*), i32 %{id})");
+                    sb.AppendLine($"call i32 (i8*, ...) @printf(i8* bitcast ([5 x i8]* @hex_format to i8*), i32 %{id})");
                     break;
                 }
                 case "double":
