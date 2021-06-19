@@ -6,7 +6,7 @@ namespace MiniCompiler
     public class WriteNode : SyntaxNode
     {
         public SyntaxNode Expression;
-        
+
         public WriteNode(SyntaxNode expression) : base(expression)
         {
             Expression = expression;
@@ -15,17 +15,19 @@ namespace MiniCompiler
         public override string GenCode(ref StringBuilder sb)
         {
             var id = Expression.GenCode(ref sb);
-            
+
             switch (Expression.Type)
             {
                 case "i32":
                 {
-                    sb.AppendLine($"call i32 (i8*, ...) @printf(i8* bitcast ([3 x i8]* @int_format to i8*), i32 %{id})");
+                    sb.AppendLine(
+                        $"call i32 (i8*, ...) @printf(i8* bitcast ([3 x i8]* @int_format to i8*), i32 %{id})");
                     break;
                 }
                 case "double":
                 {
-                    sb.AppendLine($"call i32 (i8*, ...) @printf(i8* bitcast ([4 x i8]* @double_format to i8*), double %{id})");
+                    sb.AppendLine(
+                        $"call i32 (i8*, ...) @printf(i8* bitcast ([4 x i8]* @double_format to i8*), double %{id})");
                     break;
                 }
                 case "i1":

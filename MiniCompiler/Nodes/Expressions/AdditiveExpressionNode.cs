@@ -78,7 +78,7 @@ namespace MiniCompiler
             }
 
             Type = opType;
-            
+
             sb.AppendLine($"%{id} = {op}{_operationMappings[Op.Text]} {opType} %{lhs}, %{rhs}");
 
             return id;

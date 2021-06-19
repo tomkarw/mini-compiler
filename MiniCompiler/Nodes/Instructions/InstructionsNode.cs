@@ -4,8 +4,8 @@ namespace MiniCompiler
 {
     public class InstructionsNode : SyntaxNode
     {
-        public SyntaxNode Instructions ;
-        public SyntaxNode Instruction ;
+        public SyntaxNode Instructions;
+        public SyntaxNode Instruction;
 
         public InstructionsNode(
             SyntaxNode declarations,

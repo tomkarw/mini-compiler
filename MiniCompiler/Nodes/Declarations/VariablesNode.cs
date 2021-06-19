@@ -4,8 +4,8 @@ namespace MiniCompiler
 {
     public class VariablesNode : SyntaxNode
     {
-        public SyntaxNode IdsOrEmptyNode ;
-        public SyntaxNode VariableNode ;
+        public SyntaxNode IdsOrEmptyNode;
+        public SyntaxNode VariableNode;
 
         public VariablesNode(
             SyntaxNode idsOrEmptyNode,
@@ -20,7 +20,7 @@ namespace MiniCompiler
         {
             IdsOrEmptyNode.Type = Type;
             IdsOrEmptyNode.GenCode(ref sb);
-            
+
             VariableNode.Type = Type;
             VariableNode.GenCode(ref sb);
             return null;

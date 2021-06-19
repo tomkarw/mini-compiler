@@ -11,7 +11,7 @@ namespace MiniCompiler
             var filename = args[0];
             var source = new FileStream(filename, FileMode.Open);
             var scanner = new Scanner(source);
-            var parser = new Parser(scanner,  new ProgramNode());
+            var parser = new Parser(scanner, new ProgramNode());
             var success = parser.Parse();
             source.Close();
 
@@ -20,7 +20,7 @@ namespace MiniCompiler
             {
                 return 1;
             }
-            
+
             var stringBuilder = new StringBuilder();
             parser.program.GenCode(ref stringBuilder);
 
@@ -33,7 +33,7 @@ namespace MiniCompiler
 
             var output = $"{filename}.ll";
             File.WriteAllText(output, stringBuilder.ToString());
-            
+
             return 0;
         }
     }

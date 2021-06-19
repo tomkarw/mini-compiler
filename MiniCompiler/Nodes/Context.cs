@@ -28,16 +28,16 @@ namespace MiniCompiler
         {
             // generate new llvm id
             var id = GetNewId();
-            
+
             // check if variable exists in context
             if (_variables.ContainsKey(name))
             {
                 var variable = _variables[name];
-                Errors.Add( $"[{line}, {column}] ERROR: variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
+                Errors.Add(
+                    $"[{line}, {column}] ERROR: variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
             }
             else
             {
-
                 // store variable in context
                 _variables.Add(name, new Variable
                 {
@@ -86,7 +86,7 @@ namespace MiniCompiler
         }
 
         public static void PrintErrors()
-        {                
+        {
             foreach (var error in Errors)
             {
                 Console.WriteLine(error);

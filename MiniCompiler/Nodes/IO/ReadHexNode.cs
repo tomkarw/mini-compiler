@@ -6,7 +6,7 @@ namespace MiniCompiler
     public class ReadHexNode : SyntaxNode
     {
         public SyntaxInfo Id;
-        
+
         public ReadHexNode(SyntaxInfo id) : base(id)
         {
             Id = id;

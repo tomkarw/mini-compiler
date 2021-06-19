@@ -6,7 +6,7 @@ namespace MiniCompiler
     public class ReadNode : SyntaxNode
     {
         private readonly SyntaxInfo _id;
-        
+
         public ReadNode(SyntaxInfo id) : base(id)
         {
             _id = id;

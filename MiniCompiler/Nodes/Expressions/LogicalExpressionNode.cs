@@ -28,14 +28,14 @@ namespace MiniCompiler
                 Context.AddError(_lhsExpression.Line, _lhsExpression.Column,
                     $"Cannot use '{_op.Text}' with {_lhsExpression.Type} and {_rhsExpression.Type} values");
             }
-            
+
 
             var trueLab = Context.GetNewId();
             var falseLab = Context.GetNewId();
             var returnPointer = Context.GetNewId();
             var endLab = Context.GetNewId();
             var returnValue = Context.GetNewId();
-            
+
             sb.AppendLine($"%{returnPointer} = alloca i1");
 
             switch (_op.Text)
@@ -65,13 +65,13 @@ namespace MiniCompiler
                     throw new ArgumentOutOfRangeException();
                 }
             }
-            
+
             sb.AppendLine($"br label %{endLab}");
             sb.AppendLine($"{endLab}:");
             sb.AppendLine($"%{returnValue} = load i1, i1* %{returnPointer}");
-            
+
             Type = "i1";
-            
+
             return returnValue;
         }
     }

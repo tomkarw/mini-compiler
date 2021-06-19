@@ -22,12 +22,12 @@ namespace MiniCompiler
             sb.AppendLine($"br label %{startLab}");
             sb.AppendLine($"{startLab}:");
             var conditionId = _condition.GenCode(ref sb);
-            
+
             if (_condition.Type != "i1")
             {
-                Context.AddError(_condition.Line,  _condition.Column, "While statement condition must return boolean");
+                Context.AddError(_condition.Line, _condition.Column, "While statement condition must return boolean");
             }
-            
+
             sb.AppendLine($"br i1 %{conditionId}, label %{innerLab}, label %{endLab}");
             sb.AppendLine($"{innerLab}:");
             _instruction.GenCode(ref sb);

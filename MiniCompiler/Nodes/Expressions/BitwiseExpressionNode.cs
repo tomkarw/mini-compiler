@@ -29,17 +29,17 @@ namespace MiniCompiler
             var id = Context.GetNewId();
             var lhs = LhsExpression.GenCode(ref sb);
             var rhs = RhsExpression.GenCode(ref sb);
-            
+
             if (LhsExpression.Type != "i32" || RhsExpression.Type != "i32")
             {
                 Context.AddError(LhsExpression.Line, LhsExpression.Column,
-                        $"Cannot use '{Op.Text}' with {LhsExpression.Type} and {RhsExpression.Type} values");
+                    $"Cannot use '{Op.Text}' with {LhsExpression.Type} and {RhsExpression.Type} values");
             }
             else
             {
                 sb.AppendLine($"%{id} = {_operationMappings[Op.Text]} i32 %{lhs}, %{rhs}");
             }
-            
+
             Type = "i32";
 
             return id;

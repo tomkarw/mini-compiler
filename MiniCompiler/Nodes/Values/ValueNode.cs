@@ -15,7 +15,7 @@ namespace MiniCompiler
             sb.AppendLine($"store {Type} {Text}, {Type}* %{idStoredValue}");
             var idLoadedValue = Context.GetNewId();
             sb.AppendLine($"%{idLoadedValue} = load {Type}, {Type}* %{idStoredValue}");
-            
+
             return idLoadedValue;
         }
     }

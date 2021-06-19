@@ -31,19 +31,21 @@ namespace MiniCompiler
                         case "i32":
                         {
                             sb.AppendLine($"%{id} = sub i32 0, %{expressionId}");
-                            break;   
+                            break;
                         }
                         case "double":
                         {
                             sb.AppendLine($"%{id} = fneg double %{expressionId}");
-                            break;   
+                            break;
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column, $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
-                            break;   
+                            Context.AddError(Op.Line, Op.Column,
+                                $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
+                            break;
                         }
                     }
+
                     break;
                 }
                 case "~":
@@ -53,14 +55,16 @@ namespace MiniCompiler
                         case "i32":
                         {
                             sb.AppendLine($"%{id} = xor i32 %{expressionId}, -1");
-                            break;   
+                            break;
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column, $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
-                            break;   
+                            Context.AddError(Op.Line, Op.Column,
+                                $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
+                            break;
                         }
                     }
+
                     break;
                 }
                 case "!":
@@ -70,14 +74,16 @@ namespace MiniCompiler
                         case "i1":
                         {
                             sb.AppendLine($"%{id} = xor i1 %{expressionId}, 1");
-                            break;   
+                            break;
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column, $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
-                            break;   
+                            Context.AddError(Op.Line, Op.Column,
+                                $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
+                            break;
                         }
                     }
+
                     break;
                 }
                 case "(int)":
@@ -88,7 +94,7 @@ namespace MiniCompiler
                         {
                             // simply ignore, just pass expressionId on
                             id = expressionId;
-                            break;   
+                            break;
                         }
                         case "double":
                         {
@@ -104,10 +110,12 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column, $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
-                            break;   
+                            Context.AddError(Op.Line, Op.Column,
+                                $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
+                            break;
                         }
                     }
+
                     break;
                 }
                 case "(double)":
@@ -118,19 +126,21 @@ namespace MiniCompiler
                         {
                             sb.AppendLine($"%{id} = sitofp i32 %{expressionId} to double");
                             Type = "double";
-                            break;   
+                            break;
                         }
                         case "double":
                         {
                             id = expressionId;
-                            break;   
+                            break;
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column, $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
-                            break;   
+                            Context.AddError(Op.Line, Op.Column,
+                                $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
+                            break;
                         }
                     }
+
                     break;
                 }
                 default:

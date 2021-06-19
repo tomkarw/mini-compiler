@@ -5,7 +5,7 @@ namespace MiniCompiler
     public class HexValueNode : ValueNode
     {
         public override string Type => "i32";
-        
+
         public HexValueNode(SyntaxInfo si) : base(si)
         {
             // translate hex to string
