@@ -112,6 +112,19 @@ instruction		: SCURLY instructions ECURLY
 			{
 				$$ = $1;
 			}
+			| WHILE SROUND expression EROUND instruction
+			{
+				$$ = new WhileInstruction(
+					$3 as SyntaxNode,
+					$4 as SyntaxNode
+				);
+			}
+			| RETURN SEMICOLON
+			{
+				$$ = new ReturnInstruction($1);
+			}
+			| ifInstruction
+			| readInstruction
 			| writeInstruction
 			;
 		
@@ -248,6 +261,34 @@ value			: VALINT
 			| VALHEX
 			{
 				$$ = new HexValueNode($1);
+			}
+			;
+			
+ifInstruction		: IF SROUND expression EROUND instruction ELSE instruction
+			{
+				$$ = new IfInstruction(
+					$3 as SyntaxNode,
+					$5 as SyntaxNode,
+					$7 as SyntaxNode
+				);
+			}
+			| IF SROUND expression EROUND instruction
+			{
+				$$ = new IfInstruction(
+					$3 as SyntaxNode,
+					$5 as SyntaxNode
+				);
+			}
+			;
+
+			
+readInstruction		: READ ID SEMICOLON
+			{
+				$$ = new ReadNode($2);
+			}
+			| READ ID COMMA HEX SEMICOLON
+			{
+				$$ = new ReadHexNode($2);
 			}
 			;
 
