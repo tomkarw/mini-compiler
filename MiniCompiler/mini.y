@@ -156,11 +156,11 @@ logicalOp		: OR
 			}
 			;
 			
-relationExpression	: additiveExp
+relationExpression	: additiveExpression
 			{
 				$$ = $1;
 			}
-			| relationExpression relationOperation additiveExp
+			| relationExpression relationOperation additiveExpression
 			{
 				$$ = new RelationExpressionNode(
 					$1 as SyntaxNode,
@@ -190,11 +190,17 @@ relationOperation	: EQ
 			}
 			;
 			
-additiveExp		: multiplicativeExp
+additiveExpression	: multiplicativeExp
 			{
+				$$ = $1;
 			}
-			| additiveExp additiveOp multiplicativeExp
+			| additiveExpression additiveOp multiplicativeExp
 			{
+				$$ = new AdditiveExpressionNode(
+					$1 as SyntaxNode,
+					$2,
+					$3 as SyntaxNode
+				);
 			}
 			;
 			

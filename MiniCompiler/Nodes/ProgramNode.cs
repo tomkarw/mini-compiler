@@ -25,12 +25,12 @@ namespace MiniCompiler
         {
             // prolog
             // constants
-            // BUG: all strings after the one used get printed out in lli output...
             sb.AppendLine("@int_format = constant [2 x i8] c\"%d\"");
-            sb.AppendLine("@double_format = constant [3 x i8] c\"%lf\"");
-            sb.AppendLine("@hex_format = constant [4 x i8] c\"0X%X\"");
-            sb.AppendLine("@true = constant [4 x i8] c\"True\"");
-            sb.AppendLine("@false = constant [5 x i8] c\"False\"");
+            // BUG: all strings after the one used get printed out in lli output...
+            // sb.AppendLine("@double_format = constant [3 x i8] c\"%lf\"");
+            // sb.AppendLine("@hex_format = constant [4 x i8] c\"0X%X\"");
+            // sb.AppendLine("@true = constant [4 x i8] c\"True\"");
+            // sb.AppendLine("@false = constant [5 x i8] c\"False\"");
             // outside functions
             sb.AppendLine("declare i32 @printf(i8*, ...)");
             sb.AppendLine("declare i32 @scanf(i8*, ...)");

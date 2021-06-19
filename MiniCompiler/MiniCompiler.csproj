@@ -11,6 +11,7 @@
         <AssemblyName>MiniCompiler</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,7 @@
         <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\AssignmentExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\IdExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\AdditiveExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\RelationExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\LogicalExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />
@@ -75,19 +77,15 @@
       <Content Include="AntiExamples\assignments.mini" />
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\eof.mini" />
+      <Content Include="AntiExamples\expressions.mini" />
       <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
-      <Content Include="Examples\assignments.ll" />
       <Content Include="Examples\assignments.mini" />
-      <Content Include="Examples\empty_program.ll" />
       <Content Include="Examples\empty_program.mini" />
-      <Content Include="Examples\expressions.ll" />
       <Content Include="Examples\expressions.mini" />
-      <Content Include="Examples\io.ll" />
+      <Content Include="Examples\expressions.mini.ll" />
       <Content Include="Examples\io.mini" />
-      <Content Include="Examples\only_declarations.ll" />
       <Content Include="Examples\only_declarations.mini" />
-      <Content Include="Examples\only_instructions.ll" />
       <Content Include="Examples\only_instructions.mini" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />

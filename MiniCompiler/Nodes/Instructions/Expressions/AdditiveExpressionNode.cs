@@ -4,43 +4,39 @@ using System.Text;
 
 namespace MiniCompiler
 {
-    public class RelationExpressionNode : SyntaxNode
+    public class AdditiveExpressionNode : SyntaxNode
     {
         private static Dictionary<string, string> _operationMappings = new Dictionary<string, string>
         {
-            {"==", "eq"},
-            {"!=", "ne"},
-            {">", "gt"},
-            {">=", "ge"},
-            {"<", "lt"},
-            {"<=", "le"}
+            {"+", "add"},
+            {"-", "sub"}
         };
 
-        public SyntaxNode RelationExpression;
-        public SyntaxInfo RelationOperator;
         public SyntaxNode AdditiveExpression;
+        public SyntaxInfo AdditiveOperator;
+        public SyntaxNode MultiplicativeExpression;
 
-        public RelationExpressionNode(SyntaxNode relationExpression, SyntaxInfo relationOp,
-            SyntaxNode additiveExpression)
-            : base(relationExpression)
+        public AdditiveExpressionNode(SyntaxNode additiveExpression, SyntaxInfo additiveOperator,
+            SyntaxNode multiplicativeExpression)
+            : base(additiveExpression)
         {
-            RelationExpression = relationExpression;
-            RelationOperator = relationOp;
             AdditiveExpression = additiveExpression;
+            AdditiveOperator = additiveExpression;
+            MultiplicativeExpression = multiplicativeExpression;
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
             var id = Context.GetNewId();
-            var lhs = RelationExpression.GenCode(ref sb);
-            var rhs = AdditiveExpression.GenCode(ref sb);
+            var lhs = AdditiveExpression.GenCode(ref sb);
+            var rhs = MultiplicativeExpression.GenCode(ref sb);
             string cmp;
             string cmpType;
-            switch (RelationExpression.Type, AdditiveExpression.Type)
+            switch (AdditiveExpression.Type, MultiplicativeExpression.Type)
             {
                 case ("i32", "i32"):
                 {
-                    cmp = (RelationOperator.Text == "==" || RelationOperator.Text == "!=") ? "icmp " : "icmp s";
+                    cmp = "";
                     cmpType = "i32";
                     break;
                 }
@@ -48,20 +44,6 @@ namespace MiniCompiler
                 {
                     cmp = "fcmp o";
                     cmpType = "double";
-                    break;
-                }
-                case ("i1", "i1"):
-                {
-                    cmp = "icmp ";
-                    cmpType = "i1";
-                    if (!(RelationOperator.Text == "==" || RelationOperator.Text == "!="))
-                    {
-                        Context.AddError(
-                            RelationOperator.Line, RelationOperator.Column,
-                            $"Cannot compare boolean values with '{RelationOperator.Text}', only '==' and '!=' allowed"
-                        );
-                    }
-
                     break;
                 }
                 case ("i32", "double"):
@@ -90,15 +72,15 @@ namespace MiniCompiler
                 {
                     cmp = "icmp ";
                     cmpType = "i32";
-                    Context.AddError(RelationOperator.Line, RelationOperator.Column,
-                        $"Cannot compare {RelationExpression.Type} and {AdditiveExpression.Type} values");
+                    Context.AddError(AdditiveExpression.Line, AdditiveExpression.Column,
+                        $"Cannot compare {AdditiveExpression.Type} and {MultiplicativeExpression.Type} values");
                     break;
                 }
             }
 
             Type = "i1";
 
-            sb.AppendLine($"%{id} = {cmp}{_operationMappings[RelationOperator.Text]} {cmpType} %{lhs}, %{rhs}");
+            sb.AppendLine($"%{id} = {cmp}{_operationMappings[AdditiveOperator.Text]} {cmpType} %{lhs}, %{rhs}");
 
             return id;
         }

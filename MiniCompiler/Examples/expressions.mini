@@ -1,6 +1,35 @@
 program {
-   bool a, b;
-   a = true;
-   b = true;
-   a || b;
+    int a, b;
+    double x, y;
+    bool i, j;
+    
+    // int
+    a = 2;
+    b = 2;
+    write a == b;
+    write a != b;
+    write a > b;
+    write a >= b;
+    write a < b;
+    write a <= b;
+   
+    // double
+    x = 2;
+    y = 2;
+    write x == y;
+    write x != y;
+    write x > y;
+    write x >= y;
+    write x < y;
+    write x <= y;
+    
+    // bool
+    i = true;
+    j = true;
+    write i == j;
+    write i != j;
+    
+    // chained
+    write (a > b) == (a != b);
+    write 2 == 2 == true;
 }
