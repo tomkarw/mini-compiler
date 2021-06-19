@@ -2,11 +2,11 @@
 
 namespace MiniCompiler
 {
-    public class CastToIntNode : SyntaxNode
+    public class CastToDoubleNode : SyntaxNode
     {
-        public CastToIntNode(SyntaxInfo si) : base(si)
+        public CastToDoubleNode(SyntaxInfo si) : base(si)
         {
-            Text = "(int)";
+            Text = "(double)";
         }
 
         public override string GenCode(ref StringBuilder sb)

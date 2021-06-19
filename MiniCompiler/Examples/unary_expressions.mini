@@ -1,0 +1,20 @@
+program {
+    write -1;
+    // write -2.0; // lli complains, but should work imo
+    
+    write ~0; // -1
+    
+    write !false;
+    write !true;
+    
+    write (int)1;
+    write (int) 2.0;
+    write (int)true;
+    write (int) false;
+    
+    write (double)5;
+    write (double)6.0;
+    
+    // chain
+    write -1 + -2;
+}

@@ -59,6 +59,7 @@
         <Compile Include="Nodes\Instructions\IO\WriteHexNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteStringNode.cs" />
+        <Compile Include="Nodes\Instructions\Operations\CastToDoubleNode.cs" />
         <Compile Include="Nodes\Instructions\Operations\CastToIntNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />
         <Compile Include="Nodes\ProgramNode.cs" />
@@ -100,6 +101,8 @@
       <Content Include="Examples\only_declarations.mini.ll" />
       <Content Include="Examples\only_instructions.mini" />
       <Content Include="Examples\only_instructions.mini.ll" />
+      <Content Include="Examples\unary_expressions.mini" />
+      <Content Include="Examples\unary_expressions.mini.ll" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />
     </ItemGroup>
