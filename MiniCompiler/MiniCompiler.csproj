@@ -79,6 +79,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="AntiExamples\assignments.mini" />
+      <Content Include="AntiExamples\bitwise_expressions.mini" />
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\eof.mini" />
       <Content Include="AntiExamples\expressions.mini" />
@@ -87,6 +88,8 @@
       <Content Include="Examples\additive_expressions.mini" />
       <Content Include="Examples\additive_expressions.mini.ll" />
       <Content Include="Examples\assignments.mini" />
+      <Content Include="Examples\bitwise_expressions.mini" />
+      <Content Include="Examples\bitwise_expressions.mini.ll" />
       <Content Include="Examples\comparisons.mini.ll" />
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\comparisons.mini" />
@@ -94,7 +97,9 @@
       <Content Include="Examples\multiplicative_expressions.mini" />
       <Content Include="Examples\multiplicative_expressions.mini.ll" />
       <Content Include="Examples\only_declarations.mini" />
+      <Content Include="Examples\only_declarations.mini.ll" />
       <Content Include="Examples\only_instructions.mini" />
+      <Content Include="Examples\only_instructions.mini.ll" />
       <Content Include="mini.lex" />
       <Content Include="mini.y" />
     </ItemGroup>

@@ -1,0 +1,5 @@
+program {
+    write 1 | 2.0;
+    write true | 4;
+    write 6.0 & 3.0;    
+}
