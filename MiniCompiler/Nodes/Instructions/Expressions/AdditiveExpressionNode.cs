@@ -12,27 +12,27 @@ namespace MiniCompiler
             {"-", "sub"}
         };
 
-        public SyntaxNode AdditiveExpression;
-        public SyntaxInfo AdditiveOperator;
-        public SyntaxNode MultiplicativeExpression;
+        public SyntaxNode LhsExpression;
+        public SyntaxInfo Op;
+        public SyntaxNode RhsExpression;
 
-        public AdditiveExpressionNode(SyntaxNode additiveExpression, SyntaxInfo additiveOperator,
-            SyntaxNode multiplicativeExpression)
-            : base(additiveExpression)
+        public AdditiveExpressionNode(SyntaxNode lhsExpression, SyntaxInfo op,
+            SyntaxNode rhsExpression)
+            : base(lhsExpression)
         {
-            AdditiveExpression = additiveExpression;
-            AdditiveOperator = additiveOperator;
-            MultiplicativeExpression = multiplicativeExpression;
+            LhsExpression = lhsExpression;
+            Op = op;
+            RhsExpression = rhsExpression;
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
             var id = Context.GetNewId();
-            var lhs = AdditiveExpression.GenCode(ref sb);
-            var rhs = MultiplicativeExpression.GenCode(ref sb);
+            var lhs = LhsExpression.GenCode(ref sb);
+            var rhs = RhsExpression.GenCode(ref sb);
             string op;
             string opType;
-            switch (AdditiveExpression.Type, MultiplicativeExpression.Type)
+            switch (LhsExpression.Type, RhsExpression.Type)
             {
                 case ("i32", "i32"):
                 {
@@ -72,15 +72,15 @@ namespace MiniCompiler
                 {
                     op = "";
                     opType = "i32";
-                    Context.AddError(AdditiveExpression.Line, AdditiveExpression.Column,
-                        $"Cannot use '{AdditiveOperator.Text}' with {AdditiveExpression.Type} and {MultiplicativeExpression.Type} values");
+                    Context.AddError(LhsExpression.Line, LhsExpression.Column,
+                        $"Cannot use '{Op.Text}' with {LhsExpression.Type} and {RhsExpression.Type} values");
                     break;
                 }
             }
 
             Type = opType;
             
-            sb.AppendLine($"%{id} = {op}{_operationMappings[AdditiveOperator.Text]} {opType} %{lhs}, %{rhs}");
+            sb.AppendLine($"%{id} = {op}{_operationMappings[Op.Text]} {opType} %{lhs}, %{rhs}");
 
             return id;
         }

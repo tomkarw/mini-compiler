@@ -197,35 +197,33 @@ additiveOp		: PLUS
 			;
 			
 multiplicativeExp	: bitwiseExp
-			{
-			}
 			| multiplicativeExp multiplicativeOp bitwiseExp
 			{
+				$$ = new MultiplicativeExpressionNode(
+					$1 as SyntaxNode,
+					$2,
+					$3 as SyntaxNode
+				);
 			}
 			;
 			
 multiplicativeOp	: MUL
-			{
-			}
 			| DIV
-			{
-			}
 			;
 			
 bitwiseExp		: unaryExp
-			{
-			}
 			| bitwiseExp bitwiseOp unaryExp
 			{
+				$$ = new BitwiseExpressionNode(
+					$1 as SyntaxNode,
+					$2,
+					$3 as SyntaxNode
+				);
 			}
 			;
 			
 bitwiseOp		: BITOR
-			{
-			}
 			| BITAND
-			{
-			}
 			;
 			
 unaryExp		: basicExpression
@@ -233,24 +231,18 @@ unaryExp		: basicExpression
 			}
 			| unaryOp unaryExp
 			{
+				$$ = new UnaryExpressionNode(
+					$1,
+					$2 as SyntaxNode
+				);
 			}
 			;
 			
 unaryOp			: MINUS
-			{
-			}
 			| BITNOT
-			{
-			}
 			| NOT
-			{
-			}
 			| CASTTOINT
-			{
-			}
 			| CASTTODOUBLE
-			{
-			}
 			;
 
 basicExpression		: value

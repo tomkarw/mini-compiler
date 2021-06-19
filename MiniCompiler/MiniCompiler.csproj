@@ -46,6 +46,9 @@
         <Compile Include="Nodes\Declarations\VariablesNode.cs" />
         <Compile Include="Nodes\EmptyNode.cs" />
         <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\UnaryExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\BitwiseExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\MultiplicativeExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\AssignmentExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\IdExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\AdditiveExpressionNode.cs" />
@@ -56,6 +59,7 @@
         <Compile Include="Nodes\Instructions\IO\WriteHexNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteNode.cs" />
         <Compile Include="Nodes\Instructions\IO\WriteStringNode.cs" />
+        <Compile Include="Nodes\Instructions\Operations\CastToIntNode.cs" />
         <Compile Include="Nodes\SyntaxInfo.cs" />
         <Compile Include="Nodes\ProgramNode.cs" />
         <Compile Include="Nodes\SyntaxNode.cs" />
@@ -87,6 +91,8 @@
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\comparisons.mini" />
       <Content Include="Examples\io.mini" />
+      <Content Include="Examples\multiplicative_expressions.mini" />
+      <Content Include="Examples\multiplicative_expressions.mini.ll" />
       <Content Include="Examples\only_declarations.mini" />
       <Content Include="Examples\only_instructions.mini" />
       <Content Include="mini.lex" />

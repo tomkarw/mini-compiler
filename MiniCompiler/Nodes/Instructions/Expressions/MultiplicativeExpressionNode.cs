@@ -4,28 +4,23 @@ using System.Text;
 
 namespace MiniCompiler
 {
-    public class RelationExpressionNode : SyntaxNode
+    public class MultiplicativeExpressionNode : SyntaxNode
     {
         private static Dictionary<string, string> _operationMappings = new Dictionary<string, string>
         {
-            {"==", "eq"},
-            {"!=", "ne"},
-            {">", "gt"},
-            {">=", "ge"},
-            {"<", "lt"},
-            {"<=", "le"}
+            {"*", "mul"},
+            {"/", "div"}
         };
 
         public SyntaxNode LhsExpression;
         public SyntaxInfo Op;
         public SyntaxNode RhsExpression;
 
-        public RelationExpressionNode(SyntaxNode lhsExpression, SyntaxInfo relationOp,
-            SyntaxNode rhsExpression)
+        public MultiplicativeExpressionNode(SyntaxNode lhsExpression, SyntaxInfo op, SyntaxNode rhsExpression)
             : base(lhsExpression)
         {
             LhsExpression = lhsExpression;
-            Op = relationOp;
+            Op = op;
             RhsExpression = rhsExpression;
         }
 
@@ -34,34 +29,20 @@ namespace MiniCompiler
             var id = Context.GetNewId();
             var lhs = LhsExpression.GenCode(ref sb);
             var rhs = RhsExpression.GenCode(ref sb);
-            string cmp;
-            string cmpType;
+            string op;
+            string opType;
             switch (LhsExpression.Type, RhsExpression.Type)
             {
                 case ("i32", "i32"):
                 {
-                    cmp = (Op.Text == "==" || Op.Text == "!=") ? "icmp " : "icmp s";
-                    cmpType = "i32";
+                    op = (Op.Text == "/") ? "s" : "";
+                    opType = "i32";
                     break;
                 }
                 case ("double", "double"):
                 {
-                    cmp = "fcmp o";
-                    cmpType = "double";
-                    break;
-                }
-                case ("i1", "i1"):
-                {
-                    cmp = "icmp ";
-                    cmpType = "i1";
-                    if (!(Op.Text == "==" || Op.Text == "!="))
-                    {
-                        Context.AddError(
-                            Op.Line, Op.Column,
-                            $"Cannot compare boolean values with '{Op.Text}', only '==' and '!=' allowed"
-                        );
-                    }
-
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 case ("i32", "double"):
@@ -71,8 +52,8 @@ namespace MiniCompiler
                     lhs = Context.GetNewId();
                     sb.AppendLine($"%{lhs} = sitofp i32 %{oldId} to double");
 
-                    cmp = "fcmp o";
-                    cmpType = "double";
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 case ("double", "i32"):
@@ -82,23 +63,23 @@ namespace MiniCompiler
                     rhs = Context.GetNewId();
                     sb.AppendLine($"%{rhs} = sitofp i32 %{oldId} to double");
 
-                    cmp = "fcmp o";
-                    cmpType = "double";
+                    op = "f";
+                    opType = "double";
                     break;
                 }
                 default:
                 {
-                    cmp = "icmp ";
-                    cmpType = "i32";
-                    Context.AddError(Op.Line, Op.Column,
-                        $"Cannot compare {LhsExpression.Type} and {RhsExpression.Type} values");
+                    op = "s";
+                    opType = "i32";
+                    Context.AddError(LhsExpression.Line, LhsExpression.Column,
+                        $"Cannot use '{Op.Text}' with {LhsExpression.Type} and {RhsExpression.Type} values");
                     break;
                 }
             }
 
-            Type = "i1";
-
-            sb.AppendLine($"%{id} = {cmp}{_operationMappings[Op.Text]} {cmpType} %{lhs}, %{rhs}");
+            Type = opType;
+            
+            sb.AppendLine($"%{id} = {op}{_operationMappings[Op.Text]} {opType} %{lhs}, %{rhs}");
 
             return id;
         }
