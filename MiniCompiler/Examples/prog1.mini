@@ -1,0 +1,5 @@
+program {
+    return;
+    write 1;
+    //{ read n; i = i+n; } 
+}

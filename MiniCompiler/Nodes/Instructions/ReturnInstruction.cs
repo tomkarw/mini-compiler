@@ -11,7 +11,8 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            sb.AppendLine("ret i32 0");
+            return null;
         }
     }
 }
