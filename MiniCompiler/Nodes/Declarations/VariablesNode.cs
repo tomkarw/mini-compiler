@@ -18,12 +18,8 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            // TODO: bug in productions, needs fixing!!!
-            if (IdsOrEmptyNode != null) 
-            {
-                IdsOrEmptyNode.Type = Type;
-                IdsOrEmptyNode.GenCode(ref sb);
-            }
+            IdsOrEmptyNode.Type = Type;
+            IdsOrEmptyNode.GenCode(ref sb);
             
             VariableNode.Type = Type;
             VariableNode.GenCode(ref sb);

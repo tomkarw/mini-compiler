@@ -53,7 +53,6 @@
         <Compile Include="Nodes\Expressions\MultiplicativeExpressionNode.cs" />
         <Compile Include="Nodes\Expressions\RelationExpressionNode.cs" />
         <Compile Include="Nodes\Expressions\UnaryExpressionNode.cs" />
-        <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
         <Compile Include="Nodes\Instructions\ReturnInstruction.cs" />
         <Compile Include="Nodes\Instructions\WhileInstruction.cs" />
         <Compile Include="Nodes\Instructions\IfInstruction.cs" />
@@ -106,6 +105,9 @@
       <Content Include="Examples\only_declarations.mini.ll" />
       <Content Include="Examples\only_instructions.mini" />
       <Content Include="Examples\only_instructions.mini.ll" />
+      <Content Include="Examples\prog1.mini" />
+      <Content Include="Examples\prog1.mini.ll" />
+      <Content Include="Examples\return.mini" />
       <Content Include="Examples\unary_expressions.mini" />
       <Content Include="Examples\unary_expressions.mini.ll" />
       <Content Include="mini.lex" />

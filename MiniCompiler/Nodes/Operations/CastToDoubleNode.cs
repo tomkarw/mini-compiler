@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace MiniCompiler
 {
@@ -11,7 +12,7 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            throw new Exception();
         }
     }
 }
