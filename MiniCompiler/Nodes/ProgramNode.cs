@@ -28,6 +28,7 @@ namespace MiniCompiler
             sb.AppendLine("@int_format = constant [3 x i8] c\"%d\\00\"");
             sb.AppendLine("@double_format = constant [4 x i8] c\"%lf\\00\"");
             sb.AppendLine("@hex_format = constant [5 x i8] c\"0X%X\\00\"");
+            sb.AppendLine("@hex_read_format = constant [3 x i8] c\"%X\\00\"");
             sb.AppendLine("@true = constant [5 x i8] c\"True\\00\"");
             sb.AppendLine("@false = constant [6 x i8] c\"False\\00\"");
             // outside functions

@@ -5,16 +5,27 @@ namespace MiniCompiler
 {
     public class ReadHexNode : SyntaxNode
     {
-        public SyntaxInfo Id;
+        private readonly SyntaxInfo _id;
 
         public ReadHexNode(SyntaxInfo id) : base(id)
         {
-            Id = id;
+            _id = id;
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new NotImplementedException();
+            var variable = Context.GetVariable(_id);
+            if (variable.Type == "i32")
+            {
+                sb.AppendLine(
+                    $"call i32 (i8*, ...) @scanf(i8* bitcast ([3 x i8]* @hex_read_format to i8*), i32* %{variable.Id})");
+            }
+            else
+            {
+                Context.AddError(_id.Line, _id.Line, $"Cannot read into type '{variable.Type}'");
+            }
+
+            return null;
         }
     }
 }

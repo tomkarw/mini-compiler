@@ -7,4 +7,20 @@ program {
     read d;
     write d;
     write "\n";
+    read h,hex;
+    write h;
+    write "\n";
+    write h,hex;
+    write "\n";
 }
+
+// input:
+// 15
+// 17.0
+// A
+
+// output:
+// 15
+// 17.000000
+// 10
+// 0XA
