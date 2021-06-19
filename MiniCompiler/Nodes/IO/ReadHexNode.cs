@@ -22,7 +22,7 @@ namespace MiniCompiler
             }
             else
             {
-                Context.AddError(_id.Line, _id.Line, $"Cannot read into type '{variable.Type}'");
+                Context.AddError(_id.Line, $"Cannot read into type '{variable.Type}'");
             }
 
             return null;

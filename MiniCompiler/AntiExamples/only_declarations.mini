@@ -1,4 +1,5 @@
 program {
    int a;
    int a, b, c;
+   int d
 }

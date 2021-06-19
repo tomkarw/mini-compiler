@@ -25,7 +25,7 @@ namespace MiniCompiler
 
             if (_condition.Type != "i1")
             {
-                Context.AddError(_condition.Line, _condition.Column, "While statement condition must return boolean");
+                Context.AddError(_condition.Line, "While statement condition must return boolean");
             }
 
             sb.AppendLine($"br i1 %{conditionId}, label %{innerLab}, label %{endLab}");

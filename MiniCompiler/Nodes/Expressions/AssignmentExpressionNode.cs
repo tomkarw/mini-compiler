@@ -33,7 +33,7 @@ namespace MiniCompiler
                 else
                 {
                     Context.AddError(
-                        Expression.Line, Expression.Column,
+                        Expression.Line,
                         $"Cannot implicitly cast from {Expression.Type} to {variable.Type}, try using casting unary operator"
                     );
                 }

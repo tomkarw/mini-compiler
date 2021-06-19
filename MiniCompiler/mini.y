@@ -50,6 +50,15 @@ declaration		: type variableNames variableName SEMICOLON
 					$3 as SyntaxNode
 				);
 			}
+			| type variableNames variableName error
+			{
+				Context.AddError($1.Line, $1.Column, "Missing semicolon");
+				$$ = new DeclarationNode(
+					$1 as SyntaxNode,
+					$2 as SyntaxNode,
+					$3 as SyntaxNode
+				);
+			}
 			;
 			    
 type			: INT

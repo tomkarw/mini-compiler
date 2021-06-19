@@ -27,7 +27,7 @@ namespace MiniCompiler
                 case "double":
                 case "i1":
                 {
-                    Context.AddError(Expression.Line, Expression.Column,
+                    Context.AddError(Expression.Line,
                         $"Cannot write value of type {Expression.Type} as hex, try removing ',hex'.");
                     break;
                 }

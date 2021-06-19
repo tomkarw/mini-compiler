@@ -40,7 +40,7 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column,
+                            Context.AddError(Op.Line,
                                 $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
                             break;
                         }
@@ -59,7 +59,7 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column,
+                            Context.AddError(Op.Line,
                                 $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
                             break;
                         }
@@ -78,7 +78,7 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column,
+                            Context.AddError(Op.Line,
                                 $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
                             break;
                         }
@@ -110,7 +110,7 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column,
+                            Context.AddError(Op.Line,
                                 $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
                             break;
                         }
@@ -135,7 +135,7 @@ namespace MiniCompiler
                         }
                         default:
                         {
-                            Context.AddError(Op.Line, Op.Column,
+                            Context.AddError(Op.Line,
                                 $"Cannot use '{Op.Text}' with '{Expression.Type}' value");
                             break;
                         }

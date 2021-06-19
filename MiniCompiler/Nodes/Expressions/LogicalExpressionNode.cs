@@ -24,7 +24,7 @@ namespace MiniCompiler
 
             if (_lhsExpression.Type != "i1" || _rhsExpression.Type != "i1")
             {
-                Context.AddError(_lhsExpression.Line, _lhsExpression.Column,
+                Context.AddError(_lhsExpression.Line,
                     $"Cannot use '{_op.Text}' with {_lhsExpression.Type} and {_rhsExpression.Type} values");
             }
 

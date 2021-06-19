@@ -5,7 +5,6 @@ namespace MiniCompiler
 {
     public struct Variable
     {
-        public string Name;
         public string Type;
         public string Id;
         public int Line;
@@ -14,9 +13,9 @@ namespace MiniCompiler
 
     public static class Context
     {
-        private static int _i = 0;
-        private static Dictionary<string, Variable> _variables = new Dictionary<string, Variable>();
-        private static List<string> Errors = new List<string>();
+        private static int _i;
+        private static readonly Dictionary<string, Variable> Variables = new Dictionary<string, Variable>();
+        private static readonly List<string> Errors = new List<string>();
 
         public static string GetNewId()
         {
@@ -30,18 +29,17 @@ namespace MiniCompiler
             var id = GetNewId();
 
             // check if variable exists in context
-            if (_variables.ContainsKey(name))
+            if (Variables.ContainsKey(name))
             {
-                var variable = _variables[name];
-                Errors.Add(
-                    $"[{line}, {column}] ERROR: variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
+                var variable = Variables[name];
+                AddError(line,
+                    $"ERROR: variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
             }
             else
             {
                 // store variable in context
-                _variables.Add(name, new Variable
+                Variables.Add(name, new Variable
                 {
-                    Name = name,
                     Type = type,
                     Id = id,
                     Line = line,
@@ -56,26 +54,25 @@ namespace MiniCompiler
         public static Variable GetVariable(SyntaxInfo variable)
         {
             // if variable doesn't exist, create a dummy one, add error and proceed
-            if (!_variables.ContainsKey(variable.Text))
+            if (!Variables.ContainsKey(variable.Text))
             {
                 Errors.Add($"[{variable.Line}, {variable.Column}] ERROR: variable '{variable.Text}' was not declared!");
                 var id = GetNewId();
                 var newVariable = new Variable
                 {
-                    Name = variable.Text,
                     Type = "i32",
                     Id = id,
                     Line = -1,
                     Column = -1
                 };
-                _variables.Add(variable.Text, newVariable);
+                Variables.Add(variable.Text, newVariable);
                 return newVariable;
             }
 
-            return _variables[variable.Text];
+            return Variables[variable.Text];
         }
 
-        public static void AddError(int line, int column, string message)
+        public static void AddError(int line, string message)
         {
             Errors.Add($"[{line}] ERROR: {message}.");
         }

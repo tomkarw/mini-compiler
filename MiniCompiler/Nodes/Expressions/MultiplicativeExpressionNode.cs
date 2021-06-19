@@ -70,7 +70,7 @@ namespace MiniCompiler
                 {
                     op = "s";
                     opType = "i32";
-                    Context.AddError(LhsExpression.Line, LhsExpression.Column,
+                    Context.AddError(LhsExpression.Line,
                         $"Cannot use '{Op.Text}' with {LhsExpression.Type} and {RhsExpression.Type} values");
                     break;
                 }

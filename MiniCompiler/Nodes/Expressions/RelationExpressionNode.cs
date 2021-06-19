@@ -56,7 +56,7 @@ namespace MiniCompiler
                     if (!(Op.Text == "==" || Op.Text == "!="))
                     {
                         Context.AddError(
-                            Op.Line, Op.Column,
+                            Op.Line,
                             $"Cannot compare boolean values with '{Op.Text}', only '==' and '!=' allowed"
                         );
                     }
@@ -89,7 +89,7 @@ namespace MiniCompiler
                 {
                     cmp = "icmp ";
                     cmpType = "i32";
-                    Context.AddError(Op.Line, Op.Column,
+                    Context.AddError(Op.Line,
                         $"Cannot compare {LhsExpression.Type} and {RhsExpression.Type} values");
                     break;
                 }

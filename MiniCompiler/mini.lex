@@ -68,5 +68,5 @@ CastToDouble	\([ \t]*double[ \t]*\)
 
 public override void yyerror(string msg, params object[] args)
 {
-	Console.WriteLine("[" + yylloc.StartLine + ", " + yylloc.StartColumn + "] ERROR: " + msg + ".");
+	Console.WriteLine("[" + yylloc.StartLine + "] ERROR: " + msg + ".");
 }
