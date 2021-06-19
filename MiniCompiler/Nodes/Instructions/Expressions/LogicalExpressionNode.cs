@@ -1,19 +1,46 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace MiniCompiler
 {
     public class LogicalExpressionNode : SyntaxNode
     {
-        public SyntaxNode Value;
-        
-        public LogicalExpressionNode(SyntaxNode value, SyntaxInfo operation, SyntaxNode ) : base(value)
+        public SyntaxNode LogicalExpression;
+        public SyntaxInfo LogicalOperator;
+        public SyntaxNode RelationExpression;
+
+        public LogicalExpressionNode(SyntaxNode logicalExpression, SyntaxInfo logicalOp, SyntaxNode relationExpression)
+            : base(logicalExpression)
         {
-            Value = value;
+            LogicalExpression = logicalExpression;
+            LogicalOperator = logicalOp;
+            RelationExpression = relationExpression;
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            // TODO: implement as shortened operations
+            var id = Context.GetNewId();
+            var lhs = LogicalExpression.GenCode(ref sb);
+            var rhs = RelationExpression.GenCode(ref sb);
+            switch (LogicalOperator.Text)
+            {
+                case "||":
+                {
+                    
+                    break;
+                }
+                case "&&":
+                {
+                    break;
+                }
+                default:
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            return id;
         }
     }
 }

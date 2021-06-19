@@ -126,41 +126,54 @@ logicalExpression	: relationExpression
 			}
 			| logicalExpression logicalOp relationExpression
 			{
+				$$ = new LogicalExpressionNode(
+					$1 as SyntaxNode,
+					$2,
+					$3 as SyntaxNode
+				);
 			}
 			;
 			
 logicalOp		: OR
 			{
+				$$ = $1;
 			}
 			| AND
 			{
+				$$ = $1;
 			}
 			;
 			
 relationExpression	: additiveExp
 			{
+				$$ = $1;
 			}
-			| relationExpression relationOp additiveExp
+			| relationExpression relationOperation additiveExp
 			{
+				$$ = new RelationExpressionNode(
+					$1 as SyntaxNode,
+					$2,
+					$3 as SyntaxNode
+				);
 			}
 			;
 			
-relationOp		: GT
-			{
-			}
-			| LT
-			{
-			}
-			| GTE
-			{
-			}
-			| LTE
+relationOperation	: EQ
 			{
 			}
 			| NOTEQ
 			{
 			}
-			| EQ
+			| GT
+			{
+			}
+			| GTE
+			{
+			}
+			| LT
+			{
+			}
+			| LTE
 			{
 			}
 			;

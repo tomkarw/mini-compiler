@@ -1,12 +1,6 @@
 program {
-   int x, y, n, a, b;
-   double d;
-   bool isOK;
-   n = 1;
-   x = 2;
-   y = 3;
-   x + y;
-   a = 11;
-   b = 4;
-   ( a>=0 && a<10 ) || b>3 ;
+   bool a, b;
+   a = true;
+   b = true;
+   a || b;
 }

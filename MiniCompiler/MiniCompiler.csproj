@@ -47,6 +47,7 @@
         <Compile Include="Nodes\Instructions\BlockInstructionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\AssignmentExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\IdExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\Expressions\RelationExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\Expressions\LogicalExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionNode.cs" />
         <Compile Include="Nodes\Instructions\InstructionsNode.cs" />
