@@ -116,7 +116,7 @@ instruction		: SCURLY instructions ECURLY
 			{
 				$$ = new WhileInstruction(
 					$3 as SyntaxNode,
-					$4 as SyntaxNode
+					$5 as SyntaxNode
 				);
 			}
 			| RETURN SEMICOLON
@@ -126,6 +126,52 @@ instruction		: SCURLY instructions ECURLY
 			| ifInstruction
 			| readInstruction
 			| writeInstruction
+			;
+			
+ifInstruction		: IF SROUND expression EROUND instruction ELSE instruction
+			{
+				$$ = new IfInstruction(
+					$3 as SyntaxNode,
+					$5 as SyntaxNode,
+					$7 as SyntaxNode
+				);
+			}
+			| IF SROUND expression EROUND instruction
+			{
+				$$ = new IfInstruction(
+					$3 as SyntaxNode,
+					$5 as SyntaxNode
+				);
+			}
+			;
+
+			
+readInstruction		: READ ID SEMICOLON
+			{
+				$$ = new ReadNode($2);
+			}
+			| READ ID COMMA HEX SEMICOLON
+			{
+				$$ = new ReadHexNode($2);
+			}
+			;
+
+writeInstruction	: WRITE expression SEMICOLON
+			{
+				$$ = new WriteNode(
+					$2 as SyntaxNode
+				);
+			}
+			| WRITE expression COMMA HEX SEMICOLON
+			{
+				$$ = new WriteHexNode(
+					$2 as SyntaxNode
+				);
+			}
+			| WRITE STRING SEMICOLON
+			{
+				$$ = new WriteStringNode($2);
+			}
 			;
 		
 expression		: logicalExpression
@@ -264,52 +310,6 @@ value			: VALINT
 			}
 			;
 			
-ifInstruction		: IF SROUND expression EROUND instruction ELSE instruction
-			{
-				$$ = new IfInstruction(
-					$3 as SyntaxNode,
-					$5 as SyntaxNode,
-					$7 as SyntaxNode
-				);
-			}
-			| IF SROUND expression EROUND instruction
-			{
-				$$ = new IfInstruction(
-					$3 as SyntaxNode,
-					$5 as SyntaxNode
-				);
-			}
-			;
-
-			
-readInstruction		: READ ID SEMICOLON
-			{
-				$$ = new ReadNode($2);
-			}
-			| READ ID COMMA HEX SEMICOLON
-			{
-				$$ = new ReadHexNode($2);
-			}
-			;
-
-writeInstruction	: WRITE expression SEMICOLON
-			{
-				$$ = new WriteNode(
-					$2 as SyntaxNode
-				);
-			}
-			| WRITE expression COMMA HEX SEMICOLON
-			{
-				$$ = new WriteHexNode(
-					$2 as SyntaxNode
-				);
-			}
-			| WRITE STRING SEMICOLON
-			{
-				$$ = new WriteStringNode($2);
-			}
-			;
-
 %%
 
 public ProgramNode program {get;set;}

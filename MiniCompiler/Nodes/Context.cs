@@ -63,7 +63,7 @@ namespace MiniCompiler
                 var newVariable = new Variable
                 {
                     Name = variable.Text,
-                    Type = "unknown",
+                    Type = "i32",
                     Id = id,
                     Line = -1,
                     Column = -1
