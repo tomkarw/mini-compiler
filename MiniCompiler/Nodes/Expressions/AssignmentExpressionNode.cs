@@ -39,7 +39,6 @@ namespace MiniCompiler
                 }
             }
 
-            // generate llvm code
             sb.AppendLine($"store {variable.Type} %{expressionId}, {variable.Type}* %{variable.Id}");
 
             Type = variable.Type;

@@ -5,15 +5,17 @@ namespace MiniCompiler
 {
     public class ReadNode : SyntaxNode
     {
-        public SyntaxInfo Id;
+        private readonly SyntaxInfo _id;
         
         public ReadNode(SyntaxInfo id) : base(id)
         {
-            Id = id;
+            _id = id;
         }
 
         public override string GenCode(ref StringBuilder sb)
         {
+            var variable = Context.GetVariable(_id);
+
             throw new NotImplementedException();
         }
     }

@@ -1,0 +1,19 @@
+program {
+    int x, y;
+    x = 1;
+    y = 2;
+
+    // not shortened
+    write false || true; // True
+    write false || false; // False
+    write true && true; // True
+    write true && false; // False
+    
+    // shortened
+    write true || false; // True
+    write false && true; // False
+    
+    // chain
+    write false || false || true;
+    write x == y || x + 1 == y; 
+}
