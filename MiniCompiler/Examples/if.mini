@@ -2,8 +2,10 @@ program {
     int x, n, k, res;
     x = 0;
 
-    if ( n > k )
+    if ( n > k ) {
         k = k*2;
+        write k;
+    }
     else
         k - k/2;
     
