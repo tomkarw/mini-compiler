@@ -74,6 +74,7 @@
     <ItemGroup>
       <Content Include="AntiExamples\assignments.mini" />
       <Content Include="AntiExamples\empty_program.mini" />
+      <Content Include="AntiExamples\eof.mini" />
       <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
       <Content Include="Examples\assignments.ll" />

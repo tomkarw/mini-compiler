@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MiniCompiler
 {
@@ -15,7 +16,7 @@ namespace MiniCompiler
     {
         private static int _i = 0;
         private static Dictionary<string, Variable> _variables = new Dictionary<string, Variable>();
-        public static List<string> Errors = new List<string>();
+        private static List<string> Errors = new List<string>();
 
         public static string GetNewId()
         {
@@ -72,6 +73,24 @@ namespace MiniCompiler
             }
 
             return _variables[variable.Text];
+        }
+
+        public static void AddError(int line, int column, string message)
+        {
+            Errors.Add($"[{line}] ERROR: {message}.");
+        }
+
+        public static bool HasErrors()
+        {
+            return Errors.Count != 0;
+        }
+
+        public static void PrintErrors()
+        {                
+            foreach (var error in Errors)
+            {
+                Console.WriteLine(error);
+            }
         }
     }
 }

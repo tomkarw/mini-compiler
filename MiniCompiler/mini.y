@@ -34,6 +34,12 @@ declarations		: /* empty */
 					$2 as SyntaxNode
 				);
 			}
+			| EOF
+			{
+				Context.AddError($1.Line, $1.Column, "Unexpected end of file");
+				Context.PrintErrors();
+				YYABORT;
+			}
 			;
 			    
 declaration		: type variableNames variableName SEMICOLON
@@ -89,6 +95,12 @@ instructions		: /* empty */
 					$1 as SyntaxNode,
 					$2 as SyntaxNode
 				);
+			}
+			| EOF
+			{
+				Context.AddError($1.Line, $1.Column, "Unexpected end of file");
+				Context.PrintErrors();
+				YYABORT;
 			}
 			;
 			    

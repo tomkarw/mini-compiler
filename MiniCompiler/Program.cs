@@ -26,12 +26,9 @@ namespace MiniCompiler
             parser.program.GenCode(ref stringBuilder);
 
             // semantic errors
-            if (Context.Errors.Count != 0)
+            if (Context.HasErrors())
             {
-                foreach (var error in Context.Errors)
-                {
-                    Console.WriteLine(error);
-                }
+                Context.PrintErrors();
                 return 2;
             }
             

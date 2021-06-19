@@ -34,10 +34,9 @@ namespace MiniCompiler
                 {
                     if (variable.Type != "unknown")
                     {
-                        Context.Errors.Add(
-                            $"[{Expression.Line}, {Expression.Column}] " +
-                            $"ERROR: Cannot implicitly cast from {Expression.Type} to {variable.Type}, " +
-                            $"try using casting unary operator."
+                        Context.AddError(
+                            Expression.Line, Expression.Column,
+                            $"Cannot implicitly cast from {Expression.Type} to {variable.Type}, try using casting unary operator"
                         );
                     }
                 }
