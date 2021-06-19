@@ -35,7 +35,7 @@ namespace MiniCompiler
                         }
                         case "double":
                         {
-                            sb.AppendLine($"%{id} = fneg double %{expressionId}");
+                            sb.AppendLine($"%{id} = fsub double -0.0, %{expressionId}");
                             break;
                         }
                         default:

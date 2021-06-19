@@ -12,5 +12,8 @@ program {
     write d;   
     write "\n";  
     write b;   
-    write "\n";  
+    write "\n";
+    
+    write -1;
+    write "\n";
 }
