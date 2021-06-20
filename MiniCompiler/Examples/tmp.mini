@@ -1,8 +1,12 @@
 program {
     //break;
     //continue;
+    int n;
+    n = 0;
     while (true) {
-        write 1;
+        n = n + 1;
+        if (n < 3) continue;
+        write n;
         break;
     }
 }

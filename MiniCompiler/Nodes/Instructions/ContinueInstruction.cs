@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace MiniCompiler
 {
@@ -10,7 +11,16 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
-            throw new System.NotImplementedException();
+            if (Context.NestedLoops.Count == 0)
+            {
+                Context.AddError(Line, $"continue used outside a loop");
+            }
+            else
+            {
+                sb.AppendLine($"br label %{Context.NestedLoops.Last().StartLabel}");
+            }
+
+            return null;
         }
     }
 }
