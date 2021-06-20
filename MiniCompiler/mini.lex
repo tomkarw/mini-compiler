@@ -10,8 +10,8 @@ ValBool		    true|false
 
 Comment		    \/\/([^\n]|\\.)*
 String		    \"([^\\\"\n]|\\.)*\"
-CastToInt		\([ \t]*int[ \t]*\)
-CastToDouble	\([ \t]*double[ \t]*\)
+CastToInt		\([ \t\n]*int[ \t\n]*\)
+CastToDouble	\([ \t\n]*double[ \t\n]*\)
 
 %%
 "program"		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.PROGRAM;			}
@@ -68,5 +68,5 @@ CastToDouble	\([ \t]*double[ \t]*\)
 
 public override void yyerror(string msg, params object[] args)
 {
-	Console.WriteLine("[" + yylloc.StartLine + "] ERROR: " + msg + ".");
+	Console.WriteLine("[" + yyline + "] ERROR: " + msg + ".");
 }

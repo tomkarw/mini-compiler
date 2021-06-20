@@ -1,8 +1,23 @@
-program
-{
-int Zmienna;
-Zmienna = 2 + 4 * 7;
-write Zmienna;
-}
+program 
+{ 
+	double d;
+	d =
+		(
+		double
+		)   
+			2;
 
-//ASDAdasdads
+	d = (double  // dziwne
+	)1;
+
+	d = ( 
+	double  
+	
+	
+	
+	
+	
+	) 2;
+
+
+}
