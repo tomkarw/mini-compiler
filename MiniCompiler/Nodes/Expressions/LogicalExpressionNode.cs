@@ -20,15 +20,7 @@ namespace MiniCompiler
         public override string GenCode(ref StringBuilder sb)
         {
             var lhs = _lhsExpression.GenCode(ref sb);
-            var rhs = _rhsExpression.GenCode(ref sb);
-
-            if (_lhsExpression.Type != "i1" || _rhsExpression.Type != "i1")
-            {
-                Context.AddError(_lhsExpression.Line,
-                    $"Cannot use '{_op.Text}' with {_lhsExpression.Type} and {_rhsExpression.Type} values");
-            }
-
-
+            
             var trueLab = Context.GetNewId();
             var falseLab = Context.GetNewId();
             var returnPointer = Context.GetNewId();
@@ -46,6 +38,7 @@ namespace MiniCompiler
                     sb.AppendLine($"store i1 true, i1* %{returnPointer}");
                     sb.AppendLine($"br label %{endLab}");
                     sb.AppendLine($"{falseLab}:");
+                    var rhs = _rhsExpression.GenCode(ref sb);
                     sb.AppendLine($"store i1 %{rhs}, i1* %{returnPointer}");
                     break;
                 }
@@ -53,6 +46,7 @@ namespace MiniCompiler
                 {
                     sb.AppendLine($"br i1 %{lhs}, label %{trueLab}, label %{falseLab}");
                     sb.AppendLine($"{trueLab}:");
+                    var rhs = _rhsExpression.GenCode(ref sb);
                     sb.AppendLine($"store i1 %{rhs}, i1* %{returnPointer}");
                     sb.AppendLine($"br label %{endLab}");
                     sb.AppendLine($"{falseLab}:");
@@ -68,6 +62,12 @@ namespace MiniCompiler
             sb.AppendLine($"br label %{endLab}");
             sb.AppendLine($"{endLab}:");
             sb.AppendLine($"%{returnValue} = load i1, i1* %{returnPointer}");
+            
+            if (_lhsExpression.Type != "i1" || _rhsExpression.Type != "i1")
+            {
+                Context.AddError(_lhsExpression.Line,
+                    $"Cannot use '{_op.Text}' with {_lhsExpression.Type} and {_rhsExpression.Type} values");
+            }
 
             Type = "i1";
 
