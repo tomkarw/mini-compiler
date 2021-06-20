@@ -2,10 +2,10 @@
 
 namespace MiniCompiler
 {
-    public class ReturnInstruction : SyntaxNode
+    public class ReturnInstructionNode : SyntaxNode
 
     {
-        public ReturnInstruction(SyntaxInfo si) : base(si)
+        public ReturnInstructionNode(SyntaxInfo si) : base(si)
         {
         }
 

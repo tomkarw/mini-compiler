@@ -2,11 +2,11 @@
 
 namespace MiniCompiler
 {
-    public class BreakInstruction : SyntaxNode
+    public class BreakInstructionNode : SyntaxNode
     {
         private readonly int _value;
         
-        public BreakInstruction(SyntaxInfo si, string value) : base(si)
+        public BreakInstructionNode(SyntaxInfo si, string value) : base(si)
         {
             _value = int.Parse(value);
         }

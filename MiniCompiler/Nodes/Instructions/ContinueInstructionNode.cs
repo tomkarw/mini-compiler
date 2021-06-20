@@ -3,9 +3,9 @@ using System.Text;
 
 namespace MiniCompiler
 {
-    public class ContinueInstruction : SyntaxNode
+    public class ContinueInstructionNode : SyntaxNode
     {
-        public ContinueInstruction(SyntaxInfo si) : base(si)
+        public ContinueInstructionNode(SyntaxInfo si) : base(si)
         {
         }
 

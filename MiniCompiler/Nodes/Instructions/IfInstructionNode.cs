@@ -2,14 +2,14 @@
 
 namespace MiniCompiler
 {
-    public class IfInstruction : SyntaxNode
+    public class IfInstructionNode : SyntaxNode
 
     {
         private readonly SyntaxNode _condition;
         private readonly SyntaxNode _thenInstruction;
         private readonly SyntaxNode _elseInstruction;
 
-        public IfInstruction(SyntaxNode condition, SyntaxNode thenInstruction, SyntaxNode elseInstruction = null) :
+        public IfInstructionNode(SyntaxNode condition, SyntaxNode thenInstruction, SyntaxNode elseInstruction = null) :
             base(condition)
         {
             _condition = condition;

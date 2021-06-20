@@ -2,16 +2,16 @@
 
 namespace MiniCompiler
 {
-    public class BlockInstruction : SyntaxNode
+    public class BlockInstructionNode : SyntaxNode
     {
         public SyntaxNode Declarations;
         public SyntaxNode Instructions;
 
-        public BlockInstruction() : base(-1, -1, null)
+        public BlockInstructionNode() : base(-1, -1, null)
         {
         }
 
-        public BlockInstruction(
+        public BlockInstructionNode(
             SyntaxNode declarations,
             SyntaxNode instructions
         ) : base(-1, -1, null)
