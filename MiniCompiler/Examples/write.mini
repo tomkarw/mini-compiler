@@ -16,4 +16,7 @@ program {
     
     write -1;
     write "\n";
+    
+    write "\"\n";
+    write "\\";
 }

@@ -88,6 +88,7 @@
       <Content Include="AntiExamples\empty_program.mini" />
       <Content Include="AntiExamples\eof.mini" />
       <Content Include="AntiExamples\expressions.mini" />
+      <Content Include="AntiExamples\invalid_file.mini" />
       <Content Include="AntiExamples\io.mini" />
       <Content Include="AntiExamples\only_declarations.mini" />
       <Content Include="AntiExamples\read.mini" />
