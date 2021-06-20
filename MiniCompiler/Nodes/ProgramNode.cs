@@ -4,20 +4,15 @@ namespace MiniCompiler
 {
     public class ProgramNode : SyntaxNode
     {
-        public SyntaxNode Declarations;
-        public SyntaxNode Instructions;
+        private readonly SyntaxNode _blockInstruction;
 
         public ProgramNode() : base(-1, -1, null)
         {
         }
 
-        public ProgramNode(
-            SyntaxNode declarations,
-            SyntaxNode instructions
-        ) : base(-1, -1, null)
+        public ProgramNode(SyntaxNode blockInstruction) : base(-1, -1, null)
         {
-            Declarations = declarations;
-            Instructions = instructions;
+            _blockInstruction = blockInstruction;
         }
 
 
@@ -38,8 +33,7 @@ namespace MiniCompiler
             sb.AppendLine("define i32 @main ()");
             sb.AppendLine("{");
 
-            Declarations.GenCode(ref sb);
-            Instructions.GenCode(ref sb);
+            _blockInstruction.GenCode(ref sb);
 
             // epilog
             sb.AppendLine("ret i32 0");

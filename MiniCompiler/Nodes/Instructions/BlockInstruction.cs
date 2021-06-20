@@ -23,9 +23,15 @@ namespace MiniCompiler
 
         public override string GenCode(ref StringBuilder sb)
         {
+            // push new context
+            Context.PushVariableStack();
+        
             Declarations.GenCode(ref sb);
             Instructions.GenCode(ref sb);
 
+            // pop context
+            Context.PopVariableStack();
+            
             return null;
         }
     }

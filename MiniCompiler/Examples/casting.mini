@@ -1,6 +1,6 @@
 program {
     double x;
-    x = (
+    x = ( // and a comment
         double
     ) 2;
     write x;

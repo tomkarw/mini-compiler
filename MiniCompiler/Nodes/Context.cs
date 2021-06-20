@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MiniCompiler
 {
@@ -14,7 +15,10 @@ namespace MiniCompiler
     public static class Context
     {
         private static int _i;
-        private static readonly Dictionary<string, Variable> Variables = new Dictionary<string, Variable>();
+
+        private static readonly List<Dictionary<string, Variable>> VariablesStack =
+            new List<Dictionary<string, Variable>>();
+
         private static readonly List<string> Errors = new List<string>();
 
         public static string GetNewId()
@@ -22,6 +26,15 @@ namespace MiniCompiler
             return $"v{_i++}";
         }
 
+        public static void PushVariableStack()
+        {
+            VariablesStack.Add(new Dictionary<string, Variable>());
+        }
+
+        public static void PopVariableStack()
+        {
+            VariablesStack.RemoveAt(VariablesStack.Count - 1);
+        }
 
         public static string AddVariable(string name, string type, int line, int column)
         {
@@ -29,16 +42,16 @@ namespace MiniCompiler
             var id = GetNewId();
 
             // check if variable exists in context
-            if (Variables.ContainsKey(name))
+            if (VariablesStack.Last().ContainsKey(name))
             {
-                var variable = Variables[name];
+                var variable = VariablesStack.Last()[name];
                 AddError(line,
-                    $"ERROR: variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
+                    $"variable '{name}' already declared at line {variable.Line} column {variable.Column}.");
             }
             else
             {
                 // store variable in context
-                Variables.Add(name, new Variable
+                VariablesStack.Last().Add(name, new Variable
                 {
                     Type = type,
                     Id = id,
@@ -53,23 +66,29 @@ namespace MiniCompiler
 
         public static Variable GetVariable(SyntaxInfo variable)
         {
-            // if variable doesn't exist, create a dummy one, add error and proceed
-            if (!Variables.ContainsKey(variable.Text))
+            // Go through all stacks, starting at top, if at any point you find the variable return it.
+            // If none of the stacks contain the variable, add compilation error 
+            for (var i = VariablesStack.Count - 1; i >= 0; i--)
             {
-                AddError(variable.Line, $"ERROR: variable '{variable.Text}' was not declared!");
-                var id = GetNewId();
-                var newVariable = new Variable
+                var variables = VariablesStack[i];
+
+                if (variables.ContainsKey(variable.Text))
                 {
-                    Type = "i32",
-                    Id = id,
-                    Line = -1,
-                    Column = -1
-                };
-                Variables.Add(variable.Text, newVariable);
-                return newVariable;
+                    return variables[variable.Text];
+                }
             }
 
-            return Variables[variable.Text];
+            AddError(variable.Line, $"variable '{variable.Text}' was not declared!");
+            var id = GetNewId();
+            var newVariable = new Variable
+            {
+                Type = "i32",
+                Id = id,
+                Line = -1,
+                Column = -1
+            };
+            VariablesStack.Last().Add(variable.Text, newVariable);
+            return newVariable;
         }
 
         public static void AddError(int line, string message)

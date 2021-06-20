@@ -106,10 +106,13 @@
       <Content Include="Examples\comparisons.mini" />
       <Content Include="Examples\if.mini" />
       <Content Include="Examples\if_edge_case.mini" />
+      <Content Include="Examples\nested_declarations.mini" />
       <Content Include="Examples\prog2.mini" />
       <Content Include="Examples\prog2.mini.ll" />
       <Content Include="Examples\read.mini" />
       <Content Include="Examples\read.mini.ll" />
+      <Content Include="Examples\tmp.mini" />
+      <Content Include="Examples\tmp.mini.ll" />
       <Content Include="Examples\write.mini" />
       <Content Include="Examples\write.mini.ll" />
       <Content Include="Examples\logical_expressions.mini" />

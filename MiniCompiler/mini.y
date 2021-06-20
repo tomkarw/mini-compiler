@@ -14,13 +14,21 @@
 
 %%
 
-start			: PROGRAM SCURLY declarations instructions ECURLY EOF
+start			: PROGRAM blockInstruction EOF
 			{
 				program = new ProgramNode(
-					$3 as SyntaxNode,
-					$4 as SyntaxNode
+					$2 as SyntaxNode
 				);
 			}  
+			;
+			
+blockInstruction	: SCURLY declarations instructions ECURLY
+			{
+				$$ = new BlockInstruction(
+					$2 as SyntaxNode,
+					$3 as SyntaxNode
+				);
+			}
 			;
 			    
 declarations		: /* empty */
@@ -113,13 +121,7 @@ instructions		: /* empty */
 			}
 			;
 			    
-instruction		: SCURLY declarations instructions ECURLY
-			{
-				$$ = new BlockInstruction(
-					$2 as SyntaxNode,
-					$3 as SyntaxNode
-				);
-			}
+instruction		: blockInstruction
 			| expression SEMICOLON
 			{
 				$$ = $1;
