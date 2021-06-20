@@ -103,6 +103,8 @@
       <Content Include="Examples\comparisons.mini" />
       <Content Include="Examples\if.mini" />
       <Content Include="Examples\if_edge_case.mini" />
+      <Content Include="Examples\prog2.mini" />
+      <Content Include="Examples\prog2.mini.ll" />
       <Content Include="Examples\read.mini" />
       <Content Include="Examples\read.mini.ll" />
       <Content Include="Examples\write.mini" />

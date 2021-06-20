@@ -1,0 +1,13 @@
+program {
+    int i, n;
+    int x, y, a, b;
+    { read n; i = i+n; }
+    
+    write n;
+    write "\n";
+    n = 1;
+    write x+y;
+    write "\n";
+    write ( a>=0 && a<10 ) || b>3;
+    write "\n";
+}

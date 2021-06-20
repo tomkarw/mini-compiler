@@ -1,23 +1,5 @@
-program 
-{ 
-	double d;
-	d =
-		(
-		double
-		)   
-			2;
-
-	d = (double  // dziwne
-	)1;
-
-	d = ( 
-	double  
-	
-	
-	
-	
-	
-	) 2;
-
-
+program {
+    int a;
+    a = 3;
+    write a+1;
 }
