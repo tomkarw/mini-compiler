@@ -8,7 +8,7 @@ IntVal		    0|[1-9]([0-9])*
 HexVal          0[xX][0-9a-fA-F]+
 BoolVal		    true|false
 
-Comment		    \/\/([^\n]|\\.)*
+Comment		    \/\/([^\n]|\\.)*\n
 String		    \"([^\\\"\n]|\\.)*\"
 
 %%

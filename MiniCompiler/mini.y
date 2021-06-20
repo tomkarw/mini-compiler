@@ -24,7 +24,7 @@ start				: PROGRAM block_instruction EOF
 				
 block_instruction		: SCURLY declarations instructions ECURLY
 				{
-					$$ = new BlockInstruction(
+					$$ = new BlockInstructionNode(
 						$2 as SyntaxNode,
 						$3 as SyntaxNode
 					);
@@ -146,35 +146,35 @@ instruction			: block_instruction
 				}
 				| WHILE SROUND expression EROUND instruction
 				{
-					$$ = new WhileInstruction(
+					$$ = new WhileInstructionNode(
 						$3 as SyntaxNode,
 						$5 as SyntaxNode
 					);
 				}
 				| RETURN SEMICOLON
 				{
-					$$ = new ReturnInstruction($1);
+					$$ = new ReturnInstructionNode($1);
 				}
 				| if_instruction
 				| read_instruction
 				| write_instruction
 				| BREAK SEMICOLON
 				{
-					$$ = new BreakInstruction($1, "1");
+					$$ = new BreakInstructionNode($1, "1");
 				}
 				| BREAK INTVAL SEMICOLON
 				{
-					$$ = new BreakInstruction($1, $2.Text);
+					$$ = new BreakInstructionNode($1, $2.Text);
 				}
 				| CONTINUE SEMICOLON
 				{
-					$$ = new ContinueInstruction($1);
+					$$ = new ContinueInstructionNode($1);
 				}
 				;
 				
 if_instruction			: IF SROUND expression EROUND instruction ELSE instruction
 				{
-					$$ = new IfInstruction(
+					$$ = new IfInstructionNode(
 						$3 as SyntaxNode,
 						$5 as SyntaxNode,
 						$7 as SyntaxNode
@@ -182,7 +182,7 @@ if_instruction			: IF SROUND expression EROUND instruction ELSE instruction
 				}
 				| IF SROUND expression EROUND instruction
 				{
-					$$ = new IfInstruction(
+					$$ = new IfInstructionNode(
 						$3 as SyntaxNode,
 						$5 as SyntaxNode
 					);
