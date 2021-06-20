@@ -9,7 +9,7 @@
 %token ASSIGNMENT OR AND BITOR BITAND EQ NOTEQ GT GTE LT LTE
 %token PLUS MINUS MUL DIV NOT BITNOT SROUND EROUND SCURLY ECURLY COMMA SEMICOLON
 %token STRING VALINT VALBOOL VALDOUBLE VALHEX ID
-%token BREAK CONTINUE
+%token BREAK CONTINUE SSQUARE ESQUARE
 
 
 %%
@@ -99,6 +99,24 @@ variableNames		: /* empty */
 variableName		: ID
 			{
 				$$ = new VariableNode($1);
+			}
+			| ID SSQUARE constantTabDimensions VALINT ESQUARE
+			{
+				$$ = new TabVariableNode(
+					$1,
+					$3 as TabDimensionsNode,
+					$4
+				);
+			}
+			;
+			
+constantTabDimensions	: /* empty */
+			| constantTabDimensions VALINT COMMA
+			{
+				$$ = new TabDimensionsNode(
+					$1 as TabDimensionsNode,
+					$2
+				);
 			}
 			;
 	

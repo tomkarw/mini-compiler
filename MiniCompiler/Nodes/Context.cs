@@ -10,6 +10,7 @@ namespace MiniCompiler
         public string Id;
         public int Line;
         public int Column;
+        public List<int> Dimensions;
     }
 
     public struct Loop
@@ -44,7 +45,7 @@ namespace MiniCompiler
             VariablesStack.RemoveAt(VariablesStack.Count - 1);
         }
 
-        public static string AddVariable(string name, string type, int line, int column)
+        public static string AddVariable(string name, string type, int line, int column, List<int> dimensions=null)
         {
             // generate new llvm id
             var id = GetNewId();
@@ -64,7 +65,8 @@ namespace MiniCompiler
                     Type = type,
                     Id = id,
                     Line = line,
-                    Column = column
+                    Column = column,
+                    Dimensions = dimensions
                 });
             }
 
@@ -72,7 +74,7 @@ namespace MiniCompiler
         }
 
 
-        public static Variable GetVariable(SyntaxInfo variable)
+        public static Variable GetVariable(SyntaxInfo variable, bool isTabVar=false)
         {
             // Go through all stacks, starting at top, if at any point you find the variable return it.
             // If none of the stacks contain the variable, add compilation error 
@@ -82,7 +84,16 @@ namespace MiniCompiler
 
                 if (variables.ContainsKey(variable.Text))
                 {
-                    return variables[variable.Text];
+                    var v = variables[variable.Text];
+                    if (isTabVar && v.Dimensions == null)
+                    {
+                        AddError(variable.Line, $"variable {variable.Text} is a scalar, not an array (maybe remove indexing?)");
+                    }
+                    else if (!isTabVar && v.Dimensions != null)
+                    {
+                        AddError(variable.Line, $"variable {variable.Text} is an array, not a scalar (maybe you are missing indexing?)");
+                    }
+                    return v;
                 }
             }
 

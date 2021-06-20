@@ -1,0 +1,12 @@
+program {
+    //break;
+    //continue;
+    int n;
+    n = 0;
+    while (true) {
+        n = n + 1;
+        if (n < 3) continue;
+        write n;
+        break;
+    }
+}

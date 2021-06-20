@@ -46,6 +46,8 @@ String		    \"([^\\\"\n]|\\.)*\"
 ")"				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.EROUND;			}
 "{"				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.SCURLY;	    	}
 "}"				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.ECURLY;			}
+"["				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.SSQUARE;	    	}
+"]"				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.ESQUARE;			}
 ","				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.COMMA;    	    	}
 ";"				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.SEMICOLON;	    	}
 " "				{																						}
