@@ -36,7 +36,7 @@ declarations		: /* empty */
 			}
 			| EOF
 			{
-				Context.AddError($1.Line, $1.Column, "Unexpected end of file");
+				Context.AddError($1.Line, "Unexpected end of file");
 				Context.PrintErrors();
 				YYABORT;
 			}
@@ -52,7 +52,7 @@ declaration		: type variableNames variableName SEMICOLON
 			}
 			| type variableNames variableName error
 			{
-				Context.AddError($1.Line, $1.Column, "Missing semicolon");
+				Context.AddError($1.Line, "Missing semicolon");
 				$$ = new DeclarationNode(
 					$1 as SyntaxNode,
 					$2 as SyntaxNode,
@@ -107,7 +107,7 @@ instructions		: /* empty */
 			}
 			| EOF
 			{
-				Context.AddError($1.Line, $1.Column, "Unexpected end of file");
+				Context.AddError($1.Line, "Unexpected end of file");
 				Context.PrintErrors();
 				YYABORT;
 			}
@@ -287,7 +287,13 @@ unaryOp			: MINUS
 			| BITNOT
 			| NOT
 			| CASTTOINT
+			{
+				$$ = new CastToIntNode($1);
+			}
 			| CASTTODOUBLE
+			{
+				$$ = new CastToDoubleNode($1);
+			}
 			;
 
 basicExpression		: value
