@@ -21,6 +21,8 @@ namespace MiniCompiler
 
     public static class Context
     {
+        private static bool CompliationFailed = false;
+        
         private static int _i;
 
         private static readonly List<Dictionary<string, Variable>> VariablesStack =
@@ -131,7 +133,7 @@ namespace MiniCompiler
 
         public static bool HasErrors()
         {
-            return Errors.Count != 0;
+            return CompliationFailed || Errors.Count != 0;
         }
 
         public static void PrintErrors()
@@ -140,6 +142,11 @@ namespace MiniCompiler
             {
                 Console.WriteLine(error);
             }
+        }
+
+        public static void SetCompilationErrors()
+        {
+            CompliationFailed = true;
         }
     }
 }

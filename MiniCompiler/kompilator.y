@@ -42,6 +42,11 @@ declarations			: /* empty */
 						$2 as SyntaxNode
 					);
 				}
+				| declarations error SEMICOLON
+				{
+					Context.SetCompilationErrors();
+					yyerrok();
+				}
 				| EOF
 				{
 					Context.AddError($1.Line, "Unexpected end of file");
@@ -52,15 +57,6 @@ declarations			: /* empty */
 				    
 declaration			: type variable_names variable_name SEMICOLON
 				{
-					$$ = new DeclarationNode(
-						$1 as SyntaxNode,
-						$2 as SyntaxNode,
-						$3 as SyntaxNode
-					);
-				}
-				| type variable_names variable_name error
-				{
-					Context.AddError($1.Line, "Missing semicolon");
 					$$ = new DeclarationNode(
 						$1 as SyntaxNode,
 						$2 as SyntaxNode,
@@ -131,42 +127,53 @@ instructions			: /* empty */
 						$2 as SyntaxNode
 					);
 				}
+				| instructions error SEMICOLON
+				{
+					Context.SetCompilationErrors();
+					yyerrok();
+				}
 				| EOF
 				{
-					Context.AddError($1.Line, "Unexpected end of file");
+					Context.AddError($1.Line, "unexpected end of file");
 					Context.PrintErrors();
 					YYABORT;
 				}
 				;
 				    
 instruction			: block_instruction
-				| expression SEMICOLON
+				| if_instruction
+				| while_instruction
+				| semicolon_instruction SEMICOLON
 				{
 					$$ = $1;
 				}
-				| WHILE SROUND expression EROUND instruction
+				;
+				
+while_instruction		: WHILE SROUND expression EROUND instruction
 				{
 					$$ = new WhileInstructionNode(
 						$3 as SyntaxNode,
 						$5 as SyntaxNode
 					);
 				}
-				| RETURN SEMICOLON
+				;
+				
+semicolon_instruction		: expression
+				| read_instruction
+				| write_instruction
+				| RETURN
 				{
 					$$ = new ReturnInstructionNode($1);
 				}
-				| if_instruction
-				| read_instruction
-				| write_instruction
-				| BREAK SEMICOLON
+				| BREAK
 				{
 					$$ = new BreakInstructionNode($1, "1");
 				}
-				| BREAK INTVAL SEMICOLON
+				| BREAK INTVAL
 				{
 					$$ = new BreakInstructionNode($1, $2.Text);
 				}
-				| CONTINUE SEMICOLON
+				| CONTINUE
 				{
 					$$ = new ContinueInstructionNode($1);
 				}
@@ -190,29 +197,29 @@ if_instruction			: IF SROUND expression EROUND instruction ELSE instruction
 				;
 	
 				
-read_instruction		: READ ID SEMICOLON
+read_instruction		: READ ID
 				{
 					$$ = new ReadNode($2);
 				}
-				| READ ID COMMA HEX SEMICOLON
+				| READ ID COMMA HEX
 				{
 					$$ = new ReadHexNode($2);
 				}
 				;
 	
-write_instruction		: WRITE expression SEMICOLON
+write_instruction		: WRITE expression
 				{
 					$$ = new WriteNode(
 						$2 as SyntaxNode
 					);
 				}
-				| WRITE expression COMMA HEX SEMICOLON
+				| WRITE expression COMMA HEX
 				{
 					$$ = new WriteHexNode(
 						$2 as SyntaxNode
 					);
 				}
-				| WRITE STRING SEMICOLON
+				| WRITE STRING
 				{
 					$$ = new WriteStringNode($2);
 				}

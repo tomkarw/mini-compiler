@@ -82,7 +82,7 @@
         <Compile Include="Nodes\Values\IntValueNode.cs" />
         <Compile Include="Nodes\Values\ValueNode.cs" />
         <Compile Include="Parser.cs" />
-        <Compile Include="Program.cs" />
+        <Compile Include="Main.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Scanner.cs" />
         <Compile Include="ShiftReduceParserCode.cs" />
@@ -134,8 +134,8 @@
       <Content Include="Examples\unary_expressions.mini" />
       <Content Include="Examples\unary_expressions.mini.ll" />
       <Content Include="Examples\while.mini" />
-      <Content Include="mini.lex" />
-      <Content Include="mini.y" />
+      <Content Include="kompilator.lex" />
+      <Content Include="kompilator.y" />
       <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

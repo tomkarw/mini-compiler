@@ -62,7 +62,6 @@ String		    \"([^\\\"\n]|\\.)*\"
 {String}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.STRING;			}
 {Id}			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.ID;				}
 <<EOF>>			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.EOF;				}
-.				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.error;		    	}
 %%
 
 

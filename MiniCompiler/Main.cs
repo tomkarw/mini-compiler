@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using GardensPoint;
 
@@ -8,6 +9,10 @@ namespace MiniCompiler
     {
         public static int Main(string[] args)
         {
+            if (args.Length < 1)
+            {
+                Console.WriteLine("usage: <exe> <filename>");
+            }
             var filename = args[0];
             var source = new FileStream(filename, FileMode.Open);
             var scanner = new Scanner(source);
