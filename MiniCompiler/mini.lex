@@ -25,6 +25,8 @@ CastToDouble	\([ \t\n]*double[ \t\n]*\)
 "double"		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.DOUBLE;			}
 "bool"			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.BOOL;				}
 "hex"			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.HEX;				}
+"break"         { yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.BREAK;				}
+"continue"      { yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.CONTINUE;			}
 "="				{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.ASSIGNMENT;		}
 "||"			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.OR;		    	}
 "&&"			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.AND;		    	}

@@ -113,9 +113,12 @@ instructions		: /* empty */
 			}
 			;
 			    
-instruction		: SCURLY instructions ECURLY
+instruction		: SCURLY declarations instructions ECURLY
 			{
-				$$ = $2;
+				$$ = new BlockInstruction(
+					$2 as SyntaxNode,
+					$3 as SyntaxNode
+				);
 			}
 			| expression SEMICOLON
 			{

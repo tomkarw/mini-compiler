@@ -53,6 +53,7 @@
         <Compile Include="Nodes\Expressions\MultiplicativeExpressionNode.cs" />
         <Compile Include="Nodes\Expressions\RelationExpressionNode.cs" />
         <Compile Include="Nodes\Expressions\UnaryExpressionNode.cs" />
+        <Compile Include="Nodes\Instructions\BlockInstruction.cs" />
         <Compile Include="Nodes\Instructions\ReturnInstruction.cs" />
         <Compile Include="Nodes\Instructions\WhileInstruction.cs" />
         <Compile Include="Nodes\Instructions\IfInstruction.cs" />
@@ -98,6 +99,7 @@
       <Content Include="Examples\assignments.mini.ll" />
       <Content Include="Examples\bitwise_expressions.mini" />
       <Content Include="Examples\bitwise_expressions.mini.ll" />
+      <Content Include="Examples\casting.mini" />
       <Content Include="Examples\comparisons.mini.ll" />
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\comparisons.mini" />

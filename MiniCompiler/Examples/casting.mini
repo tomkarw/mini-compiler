@@ -1,0 +1,7 @@
+program {
+    double x;
+    x = (
+        double
+    ) 2;
+    write x;
+}
