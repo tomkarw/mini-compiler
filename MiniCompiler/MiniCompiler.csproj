@@ -54,6 +54,8 @@
         <Compile Include="Nodes\Expressions\RelationExpressionNode.cs" />
         <Compile Include="Nodes\Expressions\UnaryExpressionNode.cs" />
         <Compile Include="Nodes\Instructions\BlockInstruction.cs" />
+        <Compile Include="Nodes\Instructions\BreakInstruction.cs" />
+        <Compile Include="Nodes\Instructions\ContinueInstruction.cs" />
         <Compile Include="Nodes\Instructions\ReturnInstruction.cs" />
         <Compile Include="Nodes\Instructions\WhileInstruction.cs" />
         <Compile Include="Nodes\Instructions\IfInstruction.cs" />

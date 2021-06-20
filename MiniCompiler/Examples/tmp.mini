@@ -1,12 +1,8 @@
 program {
-    int x;
-    x = 2;
-    {
-        int x;
-        x = 1;
-        write x;
-        write "\n";
+    break;
+    continue;
+    while (true) {
+        write 1;
+        break;
     }
-    write x;
-    write "\n";
 }

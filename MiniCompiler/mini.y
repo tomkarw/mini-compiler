@@ -140,6 +140,18 @@ instruction		: blockInstruction
 			| ifInstruction
 			| readInstruction
 			| writeInstruction
+			| BREAK SEMICOLON
+			{
+				$$ = new BreakInstruction($1, "1");
+			}
+			| BREAK VALINT SEMICOLON
+			{
+				$$ = new BreakInstruction($1, $2.Text);
+			}
+			| CONTINUE SEMICOLON
+			{
+				$$ = new ContinueInstruction($1);
+			}
 			;
 			
 ifInstruction		: IF SROUND expression EROUND instruction ELSE instruction
