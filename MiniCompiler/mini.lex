@@ -3,10 +3,10 @@
 
 Id			    [a-zA-Z][a-zA-Z0-9]*
 
-ValDouble   	(0|(([1-9][0-9]*))+)\.([0-9])+
-ValInt		    0|[1-9]([0-9])*
-ValHex          0[xX][0-9a-fA-F]+
-ValBool		    true|false
+DoubleVal   	(0|(([1-9][0-9]*))+)\.([0-9])+
+IntVal		    0|[1-9]([0-9])*
+HexVal          0[xX][0-9a-fA-F]+
+BoolVal		    true|false
 
 Comment		    \/\/([^\n]|\\.)*
 String		    \"([^\\\"\n]|\\.)*\"
@@ -55,10 +55,10 @@ String		    \"([^\\\"\n]|\\.)*\"
 "\n"			{																						}
 "\r"			{																						}
 {Comment}		{																						}
-{ValDouble}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALDOUBLE;		    }
-{ValInt}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALINT;			}
-{ValHex}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALHEX;			}
-{ValBool}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALBOOL;			}
+{DoubleVal}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.DOUBLEVAL;		    }
+{IntVal}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.INTVAL;			}
+{HexVal}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.HEXVAL;			}
+{BoolVal}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.BOOLVAL;			}
 {String}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.STRING;			}
 {Id}			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.ID;				}
 <<EOF>>			{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.EOF;				}
