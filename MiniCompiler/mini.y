@@ -9,7 +9,7 @@
 %token ASSIGNMENT OR AND BITOR BITAND EQ NOTEQ GT GTE LT LTE
 %token PLUS MINUS MUL DIV NOT BITNOT SROUND EROUND SCURLY ECURLY COMMA SEMICOLON
 %token STRING VALINT VALBOOL VALDOUBLE VALHEX ID
-%token CASTTOINT CASTTODOUBLE
+%token BREAK CONTINUE
 
 
 %%
@@ -289,11 +289,11 @@ unaryExp		: basicExpression
 unaryOp			: MINUS
 			| BITNOT
 			| NOT
-			| CASTTOINT
+			| SROUND INT EROUND
 			{
 				$$ = new CastToIntNode($1);
 			}
-			| CASTTODOUBLE
+			| SROUND DOUBLE EROUND
 			{
 				$$ = new CastToDoubleNode($1);
 			}

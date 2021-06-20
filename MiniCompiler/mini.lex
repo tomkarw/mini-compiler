@@ -10,8 +10,6 @@ ValBool		    true|false
 
 Comment		    \/\/([^\n]|\\.)*
 String		    \"([^\\\"\n]|\\.)*\"
-CastToInt		\([ \t\n]*int[ \t\n]*\)
-CastToDouble	\([ \t\n]*double[ \t\n]*\)
 
 %%
 "program"		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.PROGRAM;			}
@@ -55,8 +53,6 @@ CastToDouble	\([ \t\n]*double[ \t\n]*\)
 "\n"			{																						}
 "\r"			{																						}
 {Comment}		{																						}
-{CastToDouble}	{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.CASTTODOUBLE;		}		
-{CastToInt}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.CASTTOINT; 		}
 {ValDouble}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALDOUBLE;		    }
 {ValInt}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALINT;			}
 {ValHex}		{ yylval = new SyntaxInfo(yyline, yycol, yytext); return (int)Tokens.VALHEX;			}

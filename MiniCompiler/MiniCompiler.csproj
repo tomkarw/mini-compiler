@@ -100,6 +100,7 @@
       <Content Include="Examples\bitwise_expressions.mini" />
       <Content Include="Examples\bitwise_expressions.mini.ll" />
       <Content Include="Examples\casting.mini" />
+      <Content Include="Examples\casting.mini.ll" />
       <Content Include="Examples\comparisons.mini.ll" />
       <Content Include="Examples\empty_program.mini" />
       <Content Include="Examples\comparisons.mini" />
