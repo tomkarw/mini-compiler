@@ -1,6 +1,6 @@
 program {
-    break;
-    continue;
+    //break;
+    //continue;
     while (true) {
         write 1;
         break;

@@ -19,6 +19,9 @@ namespace MiniCompiler
             var startLab = Context.GetNewId();
             var innerLab = Context.GetNewId();
             var endLab = Context.GetNewId();
+            
+            Context.PushNestedLoop(startLab, endLab);
+            
             sb.AppendLine($"br label %{startLab}");
             sb.AppendLine($"{startLab}:");
             var conditionId = _condition.GenCode(ref sb);
@@ -33,6 +36,9 @@ namespace MiniCompiler
             _instruction.GenCode(ref sb);
             sb.AppendLine($"br label %{startLab}");
             sb.AppendLine($"{endLab}:");
+            
+            Context.PopNestedLoop();
+            
             return null;
         }
     }

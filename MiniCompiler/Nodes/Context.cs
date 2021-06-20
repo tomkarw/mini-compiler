@@ -12,12 +12,20 @@ namespace MiniCompiler
         public int Column;
     }
 
+    public struct Loop
+    {
+        public string StartLabel;
+        public string EndLabel;
+    }
+
     public static class Context
     {
         private static int _i;
 
         private static readonly List<Dictionary<string, Variable>> VariablesStack =
             new List<Dictionary<string, Variable>>();
+        
+        public static readonly List<Loop> NestedLoops = new List<Loop>();
 
         private static readonly List<string> Errors = new List<string>();
 
@@ -89,6 +97,20 @@ namespace MiniCompiler
             };
             VariablesStack.Last().Add(variable.Text, newVariable);
             return newVariable;
+        }
+
+        public static void PushNestedLoop(string startLabel, string endLabel)
+        {
+            NestedLoops.Add(new Loop
+            {
+                StartLabel = startLabel,
+                EndLabel = endLabel
+            });
+        }
+
+        public static void PopNestedLoop()
+        {
+            NestedLoops.RemoveAt(NestedLoops.Count - 1);
         }
 
         public static void AddError(int line, string message)
