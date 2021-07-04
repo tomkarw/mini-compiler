@@ -134,8 +134,8 @@
       <Content Include="Examples\unary_expressions.mini" />
       <Content Include="Examples\unary_expressions.mini.ll" />
       <Content Include="Examples\while.mini" />
-      <Content Include="kompilator.lex" />
-      <Content Include="kompilator.y" />
+      <Content Include="compiler.lex" />
+      <Content Include="compiler.y" />
       <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

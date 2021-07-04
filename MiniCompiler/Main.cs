@@ -36,7 +36,7 @@ namespace MiniCompiler
                 return 2;
             }
 
-            var output = $"{filename}.ll";
+            var output = Path.ChangeExtension(filename, ".ll");
             File.WriteAllText(output, stringBuilder.ToString());
 
             return 0;
